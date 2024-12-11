@@ -1,0 +1,18 @@
+- type: entity
+  id: AlchemDispenserMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: alchemical dispenser machine board
+  description: A printed circuit on a wooden board for an alchemical machine.
+  components:
+    - type: Sprite
+      state: medical
+    - type: MachineBoard
+      prototype: AlchemDispenserEmpty
+      stackRequirements:
+        Capacitor: 1
+        Glass: 3
+        Steel: 3
+      tagRequirements:
+        GlassBeaker:
+          amount: 1
+          defaultPrototype: Beaker

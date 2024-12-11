@@ -1,0 +1,57 @@
+- type: entity
+  id: AlchemDispenser
+  name: Alchemical dispenser
+  suffix: Filled
+  parent: ReagentDispenserBase
+  description: A chaos-grade alchemical mixing station.
+  components:
+  - type: Sprite
+    sprite: Structures/dispensers.rsi
+    state: old_fashion-working
+    snapCardinals: true
+  - type: ReagentDispenser
+    storageWhitelist:
+      tags:
+      - ChemDispensable
+    pack: AlchemDispenserStandardInventory
+  - type: ApcPowerReceiver
+  - type: ExtensionCableReceiver
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Machine
+    board: AlchemDispenserMachineCircuitboard
+  - type: GuideHelp # [IMPL] There is no guide for the new alchemical stuff, as of yet.
+    guides:
+    - Chemicals
+    - Chemist
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.25, -0.4, 0.25, 0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+
+- type: entity
+  id: AlchemDispenserEmpty
+  name: alchemical dispenser
+  suffix: Empty
+  parent: AlchemDispenser
+  components:
+  - type: ReagentDispenser
+    pack: EmptyInventory

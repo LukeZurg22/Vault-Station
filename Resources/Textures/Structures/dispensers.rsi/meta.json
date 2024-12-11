@@ -26,6 +26,26 @@
           0.2
         ]
       ]
+    },
+	{
+      "name": "old_fashion"
+    },
+    {
+      "name": "old_fashion-off"
+    },
+    {
+      "name": "old_fashion-panel"
+    },
+    {
+      "name": "old_fashion-working",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
     }
   ]
 }

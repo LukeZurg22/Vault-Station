@@ -1,0 +1,15 @@
+- type: reagentDispenserInventory
+  id: AlchemDispenserStandardInventory
+  inventory:
+  - JugAluminium
+  - JugCopper
+  - JugFluorine
+  - JugIodine
+  - JugIron
+  - JugLithium
+  - JugMercury
+  - JugPotassium
+  - JugRadium
+  - JugSilicon
+  - JugSodium
+  - JugSulfur
