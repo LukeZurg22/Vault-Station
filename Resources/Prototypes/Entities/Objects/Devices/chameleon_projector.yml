@@ -24,7 +24,7 @@
 - type: entity
   categories: [ HideSpawnMenu ]
   id: ChameleonDisguise
-  name: Urist McKleiner
+  name: John Kleiner
   components:
   # this and the name/desc get replaced, this is just placeholder incase something goes wrong
   - type: Sprite

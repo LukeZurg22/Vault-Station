@@ -8,29 +8,32 @@
   },
   "states": [
     {
-      "name": "campfire"
+		"name": "campfire"
+    },
+	{
+		"name": "campfire_spit"
+	},
+    {
+		"name": "campfire_extinguished"
     },
     {
-      "name": "campfire_extinguished"
-    },
-    {
-      "name": "burning",
-      "delays": [
-        [
-      0.3,
-      0.3,
-      0.3
+		"name": "burning",
+		"delays": [
+			[
+		0.3,
+		0.3,
+		0.3
     ]
       ]
     },
     {
-      "name": "cooking_campfire",
-      "delays": [
-        [
-      0.3,
-      0.3,
-      0.3
-    ]
+		"name": "cooking_campfire",
+		"delays": [
+			[
+		0.3,
+		0.3,
+		0.3
+		]
       ]
     }
   ]
