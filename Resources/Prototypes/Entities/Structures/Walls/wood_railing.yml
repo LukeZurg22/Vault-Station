@@ -1,15 +1,15 @@
 - type: entity
   parent: BaseStructure
-  id: BaseRailing
+  id: BaseWoodRailing
   abstract: true
-  name: railing
-  description: Basic railing meant to protect idiots from places they shouldn't be.
+  name: wood railing
+  description: Basic railing made out of large wooden beams.
   components:
   - type: Sprite
     drawdepth: SmallObjects
-    sprite: Structures/Walls/railing.rsi
+    sprite: Structures/Walls/wood_railing.rsi
   - type: Icon
-    sprite: Structures/Walls/railing.rsi
+    sprite: Structures/Walls/wood_railing.rsi
   - type: Physics
     bodyType: Static
   - type: InteractionOutline
@@ -19,15 +19,15 @@
     damageModifierSet: FlimsyMetallic
   - type: Climbable
   - type: Construction
-    graph: Railing
+    graph: WoodRailing
   - type: RCDDeconstructable
     cost: 2
     delay: 2
     fx: EffectRCDDeconstruct2
-
+    
 - type: entity
-  parent: BaseRailing
-  id: Railing
+  parent: BaseWoodRailing
+  id: WoodRailing
   components:
   - type: Sprite
     state: side
@@ -63,17 +63,17 @@
             volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
-          PartRodMetal1:
+          MaterialWoodPlank1:
             min: 0
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
-    node: railing
+    node: woodRailing
 
 - type: entity
-  parent: BaseRailing
-  id: RailingCorner
+  parent: BaseWoodRailing
+  id: WoodRailingCorner
   components:
   - type: Sprite
     state: corner
@@ -118,17 +118,17 @@
             volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
-          PartRodMetal1:
+          MaterialWoodPlank1:
             min: 0
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
-    node: railingCorner
+    node: woodRailingCorner
 
 - type: entity
-  parent: BaseRailing
-  id: RailingCornerSmall
+  parent: BaseWoodRailing
+  id: WoodRailingCornerSmall
   components:
   - type: Sprite
     state: corner_small
@@ -164,17 +164,17 @@
             volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
-          PartRodMetal1:
+          MaterialWoodPlank1:
             min: 0
             max: 1
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
-    node: railingCornerSmall
+    node: woodRailingCornerSmall
 
 - type: entity
-  parent: BaseRailing
-  id: RailingRound
+  parent: BaseWoodRailing
+  id: WoodRailingRound
   components:
   - type: Sprite
     state: round
@@ -228,10 +228,10 @@
             volume: -6
       - !type:SpawnEntitiesBehavior
         spawn:
-          PartRodMetal1:
+          MaterialWoodPlank1:
             min: 0
             max: 2
       - !type:DoActsBehavior
         acts: [ "Destruction" ]
   - type: Construction
-    node: railingRound
+    node: woodRailingRound

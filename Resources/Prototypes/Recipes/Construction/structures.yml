@@ -951,6 +951,8 @@
   conditions:
     - !type:TileNotBlocked
 
+
+# Steel Railing
 - type: construction
   name: railing
   id: Railing
@@ -1012,6 +1014,75 @@
   description: Basic railing meant to protect idiots like you from falling.
   icon:
     sprite: Structures/Walls/railing.rsi
+    state: round
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+# Wooden Railing
+- type: construction
+  name: wood railing
+  id: WoodRailing
+  graph: WoodRailing
+  startNode: start
+  targetNode: woodRailing
+  category: construction-category-structures
+  description: Wooden railing.
+  icon:
+    sprite: Structures/Walls/wood_railing.rsi
+    state: side
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: wood railing corner
+  id: RailingCorner
+  graph: WoodRailing
+  startNode: start
+  targetNode: woodRailingCorner
+  category: construction-category-structures
+  description: Wooden railing.
+  icon:
+    sprite: Structures/Walls/wood_railing.rsi
+    state: corner
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: wood railing corner small
+  id: WoodRailingCornerSmall
+  graph: WoodRailing
+  startNode: start
+  targetNode: woodRailingCornerSmall
+  category: construction-category-structures
+  description: Wooden railing.
+  icon:
+    sprite: Structures/Walls/wood_railing.rsi
+    state: corner_small
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: wood railing round
+  id: WoodRailingRound
+  graph: WoodRailing
+  startNode: start
+  targetNode: woodRailingRound
+  category: construction-category-structures
+  description: Wooden railing.
+  icon:
+    sprite: Structures/Walls/wood_railing.rsi
     state: round
   objectType: Structure
   placementMode: SnapgridCenter
