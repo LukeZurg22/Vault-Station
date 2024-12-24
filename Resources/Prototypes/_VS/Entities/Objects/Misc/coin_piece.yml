@@ -85,7 +85,7 @@
     sprite: _VS/Objects/Economy/coin.rsi # Frontier: larger denominations
     state: coin_copper
     layers:
-    - state: coin
+    - state: coin_copper
       map: ["base"]
   - type: Physics
     bodyType: Dynamic
