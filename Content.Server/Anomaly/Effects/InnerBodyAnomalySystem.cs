@@ -187,6 +187,11 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
         if (args.NewMobState != MobState.Dead)
             return;
 
+        var ev = new BeforeRemoveAnomalyOnDeathEvent();
+        RaiseLocalEvent(args.Target, ref ev);
+        if (ev.Cancelled)
+            return;
+
         _anomaly.ChangeAnomalyHealth(ent, -2); //Shutdown it
     }
 
