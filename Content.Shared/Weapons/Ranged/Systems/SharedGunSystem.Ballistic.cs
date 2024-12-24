@@ -188,7 +188,7 @@ public abstract partial class SharedGunSystem
         if (!component.Cycleable)
             return;
 
-        // Reset shotting for cycling
+        // Reset shorting for cycling
         if (Resolve(uid, ref gunComp, false) &&
             gunComp is { FireRateModified: > 0f } &&
             !Paused(uid))
@@ -222,7 +222,7 @@ public abstract partial class SharedGunSystem
     private void OnBallisticMapInit(EntityUid uid, BallisticAmmoProviderComponent component, MapInitEvent args)
     {
         // TODO this should be part of the prototype, not set on map init.
-        // Alternatively, just track spawned count, instead of unspawned count.
+        // Alternatively, just track spawned count, instead of de-spawned count.
         if (component.Proto != null)
         {
             component.UnspawnedCount = Math.Max(0, component.Capacity - component.Container.ContainedEntities.Count);

@@ -28,7 +28,7 @@
   components:
   - type: Sprite
     state: eight-ball
-  - type: SpeakOnUse
+  - type: SpeakOnTrigger
     pack: Eightball
     
 - type: entity
@@ -39,5 +39,5 @@
   components:
   - type: Sprite
     state: magic-conch
-  - type: SpeakOnUse
+  - type: SpeakOnTrigger
     pack: EightballConch
