@@ -25,3 +25,13 @@
   license: "CC-BY-SA-3.0"
   copyright: "Sunset by PigeonBeans. Exported in Mono OGG."
   source: "https://soundcloud.com/pigeonbeans/sunset"
+  
+- files: ["absconditus.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Absconditus by ZhayTee. Converted from MP3 to OGG."
+  source: "https://bandcamp.zhaytee.net/track/absconditus"
+
+- files: ["atomicamnesiammx.ogg"]
+  license: "CC-BY-NC-SA-3.0"
+  copyright: "Atomic Amnesia MMX by Philip Dyer. Converted from MP3 to OGG."
+  source: "https://soundcloud.com/3kliksphilip/atomic-amnesia-mmx-1"

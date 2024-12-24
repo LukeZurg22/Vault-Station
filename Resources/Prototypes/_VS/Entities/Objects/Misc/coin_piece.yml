@@ -11,7 +11,7 @@
     storedOffset: 0,0
   - type: Currency
     price:
-      Speso: 1
+      Coin: 1
   - type: Material
   - type: PhysicalComposition
     materialComposition:
@@ -106,14 +106,14 @@
   name: piece
   unit: materials-unit-bill
   stackEntity: CoinPiece
-  icon: { sprite: _VS/Objects/Economy/coin.rsi, state: coin_copper } # Frontier: use Frontier sprite set
+  icon: { sprite: _VS/Objects/Economy/coin.rsi, state: coin_copper }
   price: 1
 
 # Copper Spawner
 - type: stack
   id: Coin
   name: piece
-  icon: { sprite: _VS/Objects/Economy/coin.rsi, state: coin_copper } # Frontier: use Frontier sprite set
+  icon: { sprite: _VS/Objects/Economy/coin.rsi, state: coin_copper }
   spawn: CoinPiece
 
 # Iron Spawner
@@ -123,7 +123,7 @@
   suffix: 10
   components:
   - type: Icon
-    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    sprite: _VS/Objects/Economy/coin.rsi
     state: coin_iron
   - type: Stack
     count: 10
@@ -135,7 +135,7 @@
   suffix: 100
   components:
   - type: Icon
-    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    sprite: _VS/Objects/Economy/coin.rsi
     state: coin_silver
   - type: Stack
     count: 100
@@ -147,7 +147,7 @@
   suffix: 1000
   components:
   - type: Icon
-    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    sprite: _VS/Objects/Economy/coin.rsi
     state: coin_gold
   - type: Stack
     count: 1000
@@ -159,7 +159,7 @@
   suffix: 10000
   components:
   - type: Icon
-    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    sprite: _VS/Objects/Economy/coin.rsi
     state: coin_platinum
   - type: Stack
     count: 10000
@@ -171,7 +171,7 @@
   suffix: 100000
   components:
   - type: Icon
-    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    sprite: _VS/Objects/Economy/coin.rsi
     state: coin_splendurium
   - type: Stack
     count: 100000
