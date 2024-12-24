@@ -1,6 +1,5 @@
 using System.Numerics;
 using Content.Shared.Weapons.Ranged.Events;
-using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
@@ -8,7 +7,7 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true), AutoGenerateComponentPause]
 //[Access(typeof(SharedGunSystem))]
 public sealed partial class GunComponent : Component
 {
@@ -245,15 +244,14 @@ public sealed partial class GunComponent : Component
     public SelectiveFire SelectedMode = SelectiveFire.SemiAuto;
 
     /// <summary>
-    /// Whether or not information about
+    /// Whether information about
     /// the gun will be shown on examine.
     /// </summary>
     [DataField]
     public bool ShowExamineText = true;
 
     /// <summary>
-    /// Whether or not someone with the
-    /// clumsy trait can shoot this
+    /// Whether someone with the clumsy trait can shoot this
     /// </summary>
     [DataField]
     public bool ClumsyProof = false;
