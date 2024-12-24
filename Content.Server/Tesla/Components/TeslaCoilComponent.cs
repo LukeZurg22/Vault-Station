@@ -1,4 +1,4 @@
-using Content.Server.Tesla.EntitySystems;
+using Content.Server.Tesla.Systems;
 
 namespace Content.Server.Tesla.Components;
 

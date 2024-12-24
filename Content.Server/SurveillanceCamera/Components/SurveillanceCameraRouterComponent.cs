@@ -2,7 +2,7 @@ using Content.Shared.DeviceNetwork;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
-namespace Content.Server.SurveillanceCamera;
+namespace Content.Server.SurveillanceCamera.Components;
 
 [RegisterComponent]
 public sealed partial class SurveillanceCameraRouterComponent : Component

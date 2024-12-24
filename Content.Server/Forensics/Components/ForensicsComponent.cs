@@ -1,4 +1,4 @@
-namespace Content.Server.Forensics
+namespace Content.Server.Forensics.Components
 {
     [RegisterComponent]
     public sealed partial class ForensicsComponent : Component

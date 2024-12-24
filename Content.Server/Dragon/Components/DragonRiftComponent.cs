@@ -2,7 +2,7 @@ using Content.Shared.Dragon;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Dragon;
+namespace Content.Server.Dragon.Components;
 
 [RegisterComponent]
 public sealed partial class DragonRiftComponent : SharedDragonRiftComponent

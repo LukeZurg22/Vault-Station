@@ -1,5 +1,6 @@
 using Content.Server.Administration;
 using Content.Server.Labels;
+using Content.Server.Labels.Label;
 using Content.Shared.Administration;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;

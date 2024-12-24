@@ -1,4 +1,4 @@
-namespace Content.Server.Chemistry.Components.DeleteOnSolutionEmptyComponent
+namespace Content.Server.Chemistry.Components
 {
     /// <summary>
     /// Component that removes an item when a specific solution in it becomes empty.

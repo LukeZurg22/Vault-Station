@@ -7,6 +7,7 @@ using Content.Shared.Stacks;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using ForensicsComponent = Content.Server.Forensics.Components.ForensicsComponent;
 
 namespace Content.Server.Destructible.Thresholds.Behaviors
 {

@@ -4,7 +4,7 @@ using Content.Server.Wires;
 using Content.Shared.Atmos.Monitor;
 using Content.Shared.Wires;
 
-namespace Content.Server.Atmos.Monitor;
+namespace Content.Server.Atmos.Monitor.WireActions;
 
 public sealed partial class AtmosMonitorDeviceNetWire : ComponentWireAction<AtmosAlarmableComponent>
 {

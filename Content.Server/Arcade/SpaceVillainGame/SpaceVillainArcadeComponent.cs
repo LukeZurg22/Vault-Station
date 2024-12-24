@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.List;
 
-namespace Content.Server.Arcade.SpaceVillain;
+namespace Content.Server.Arcade.SpaceVillainGame;
 
 [RegisterComponent]
 public sealed partial class SpaceVillainArcadeComponent : SharedSpaceVillainArcadeComponent

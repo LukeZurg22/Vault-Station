@@ -1,11 +1,9 @@
 using Content.Server.Atmos.Monitor.Components;
-using Content.Server.Atmos.Monitor.Systems;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Shared.Atmos;
 using Content.Shared.Atmos.Monitor.Components;
 using Content.Shared.Atmos.Piping.Unary.Components;
 
-namespace Content.Server.Atmos.Monitor;
+namespace Content.Server.Atmos.Monitor.Systems;
 
 /// <summary>
 ///     This is an interface that air alarm modes use

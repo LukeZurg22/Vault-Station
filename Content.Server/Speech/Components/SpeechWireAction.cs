@@ -3,7 +3,7 @@ using Content.Server.Wires;
 using Content.Shared.Speech;
 using Content.Shared.Wires;
 
-namespace Content.Server.Speech;
+namespace Content.Server.Speech.Components;
 
 public sealed partial class SpeechWireAction : ComponentWireAction<SpeechComponent>
 {

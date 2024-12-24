@@ -1,8 +1,8 @@
-using Content.Server.Chemistry.Components.DeleteOnSolutionEmptyComponent;
+using Content.Server.Chemistry.Components;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 
-namespace Content.Server.Chemistry.EntitySystems.DeleteOnSolutionEmptySystem
+namespace Content.Server.Chemistry.EntitySystems
 {
     public sealed class DeleteOnSolutionEmptySystem : EntitySystem
     {

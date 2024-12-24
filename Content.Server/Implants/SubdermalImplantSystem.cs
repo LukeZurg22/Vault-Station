@@ -19,11 +19,15 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Random;
 using System.Numerics;
+using Content.Server.Forensics.Systems;
+using Content.Server.Humanoid.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Store.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
+using DnaComponent = Content.Server.Forensics.Components.DnaComponent;
+using FingerprintComponent = Content.Server.Forensics.Components.FingerprintComponent;
 
 namespace Content.Server.Implants;
 

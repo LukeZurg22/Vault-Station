@@ -1,5 +1,4 @@
 using Content.Server.Objectives.Components;
-using Content.Server.Objectives.Components.Targets;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.Interaction;
 using Content.Shared.Mind;
@@ -13,6 +12,7 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Stacks;
+using StealTargetComponent = Content.Server.Objectives.Components.StealTargetComponent;
 
 namespace Content.Server.Objectives.Systems;
 

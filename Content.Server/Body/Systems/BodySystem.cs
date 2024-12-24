@@ -12,6 +12,7 @@ using Content.Shared.Movement.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Timing;
 using System.Numerics;
+using Content.Server.Humanoid.Systems;
 
 namespace Content.Server.Body.Systems;
 

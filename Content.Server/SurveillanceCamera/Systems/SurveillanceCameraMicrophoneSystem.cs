@@ -5,7 +5,7 @@ using Content.Shared.Whitelist;
 using Robust.Shared.Player;
 using static Content.Server.Chat.Systems.ChatSystem;
 
-namespace Content.Server.SurveillanceCamera;
+namespace Content.Server.SurveillanceCamera.Systems;
 
 public sealed class SurveillanceCameraMicrophoneSystem : EntitySystem
 {
@@ -14,9 +14,9 @@ public sealed class SurveillanceCameraMicrophoneSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-        SubscribeLocalEvent<SurveillanceCameraMicrophoneComponent, ComponentInit>(OnInit);
-        SubscribeLocalEvent<SurveillanceCameraMicrophoneComponent, ListenEvent>(RelayEntityMessage);
-        SubscribeLocalEvent<SurveillanceCameraMicrophoneComponent, ListenAttemptEvent>(CanListen);
+        SubscribeLocalEvent<Components.SurveillanceCameraMicrophoneComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<Components.SurveillanceCameraMicrophoneComponent, ListenEvent>(RelayEntityMessage);
+        SubscribeLocalEvent<Components.SurveillanceCameraMicrophoneComponent, ListenAttemptEvent>(CanListen);
         SubscribeLocalEvent<ExpandICChatRecipientsEvent>(OnExpandRecipients);
     }
 
@@ -27,7 +27,7 @@ public sealed class SurveillanceCameraMicrophoneSystem : EntitySystem
         var sourcePos = _xforms.GetWorldPosition(sourceXform, xformQuery);
 
         // This function ensures that chat popups appear on camera views that have connected microphones.
-        foreach (var (_, __, camera, xform) in EntityQuery<SurveillanceCameraMicrophoneComponent, ActiveListenerComponent, SurveillanceCameraComponent, TransformComponent>())
+        foreach (var (_, __, camera, xform) in EntityQuery<Components.SurveillanceCameraMicrophoneComponent, ActiveListenerComponent, Components.SurveillanceCameraComponent, TransformComponent>())
         {
             if (camera.ActiveViewers.Count == 0)
                 continue;
@@ -50,7 +50,7 @@ public sealed class SurveillanceCameraMicrophoneSystem : EntitySystem
         }
     }
 
-    private void OnInit(EntityUid uid, SurveillanceCameraMicrophoneComponent component, ComponentInit args)
+    private void OnInit(EntityUid uid, Components.SurveillanceCameraMicrophoneComponent component, ComponentInit args)
     {
         if (component.Enabled)
             EnsureComp<ActiveListenerComponent>(uid).Range = component.Range;
@@ -58,16 +58,16 @@ public sealed class SurveillanceCameraMicrophoneSystem : EntitySystem
             RemCompDeferred<ActiveListenerComponent>(uid);
     }
 
-    public void CanListen(EntityUid uid, SurveillanceCameraMicrophoneComponent microphone, ListenAttemptEvent args)
+    public void CanListen(EntityUid uid, Components.SurveillanceCameraMicrophoneComponent microphone, ListenAttemptEvent args)
     {
         // TODO maybe just make this a part of ActiveListenerComponent?
         if (_whitelistSystem.IsBlacklistPass(microphone.Blacklist, args.Source))
             args.Cancel();
     }
 
-    public void RelayEntityMessage(EntityUid uid, SurveillanceCameraMicrophoneComponent component, ListenEvent args)
+    public void RelayEntityMessage(EntityUid uid, Components.SurveillanceCameraMicrophoneComponent component, ListenEvent args)
     {
-        if (!TryComp(uid, out SurveillanceCameraComponent? camera))
+        if (!TryComp(uid, out Components.SurveillanceCameraComponent? camera))
             return;
 
         var ev = new SurveillanceCameraSpeechSendEvent(args.Source, args.Message);
@@ -78,7 +78,7 @@ public sealed class SurveillanceCameraMicrophoneSystem : EntitySystem
         }
     }
 
-    public void SetEnabled(EntityUid uid, bool value, SurveillanceCameraMicrophoneComponent? microphone = null)
+    public void SetEnabled(EntityUid uid, bool value, Components.SurveillanceCameraMicrophoneComponent? microphone = null)
     {
         if (!Resolve(uid, ref microphone))
             return;

@@ -13,6 +13,7 @@ using Robust.Server.GameObjects;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Security.Components;
+using StationRecordsComponent = Content.Server.StationRecords.Components.StationRecordsComponent;
 
 namespace Content.Server.CriminalRecords.Systems;
 

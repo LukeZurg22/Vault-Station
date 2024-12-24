@@ -1,24 +1,22 @@
 using System.Linq;
 using System.Text;
 using Content.Server.Popups;
-using Content.Shared.UserInterface;
 using Content.Shared.DoAfter;
-using Content.Shared.Fluids.Components;
 using Content.Shared.Forensics;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
 using Content.Shared.Paper;
-using Content.Shared.Verbs;
 using Content.Shared.Tag;
-using Robust.Shared.Audio.Systems;
+using Content.Shared.UserInterface;
+using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
-using Robust.Shared.Player;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
-using Content.Server.Chemistry.Containers.EntitySystems;
+
 // todo: remove this stinky LINQy
 
-namespace Content.Server.Forensics
+namespace Content.Server.Forensics.Systems
 {
     public sealed class ForensicScannerSystem : EntitySystem
     {
@@ -37,16 +35,16 @@ namespace Content.Server.Forensics
         {
             base.Initialize();
 
-            SubscribeLocalEvent<ForensicScannerComponent, AfterInteractEvent>(OnAfterInteract);
-            SubscribeLocalEvent<ForensicScannerComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
-            SubscribeLocalEvent<ForensicScannerComponent, BeforeActivatableUIOpenEvent>(OnBeforeActivatableUIOpen);
-            SubscribeLocalEvent<ForensicScannerComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
-            SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerPrintMessage>(OnPrint);
-            SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerClearMessage>(OnClear);
-            SubscribeLocalEvent<ForensicScannerComponent, ForensicScannerDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<Components.ForensicScannerComponent, AfterInteractEvent>(OnAfterInteract);
+            SubscribeLocalEvent<Components.ForensicScannerComponent, AfterInteractUsingEvent>(OnAfterInteractUsing);
+            SubscribeLocalEvent<Components.ForensicScannerComponent, BeforeActivatableUIOpenEvent>(OnBeforeActivatableUIOpen);
+            SubscribeLocalEvent<Components.ForensicScannerComponent, GetVerbsEvent<UtilityVerb>>(OnUtilityVerb);
+            SubscribeLocalEvent<Components.ForensicScannerComponent, ForensicScannerPrintMessage>(OnPrint);
+            SubscribeLocalEvent<Components.ForensicScannerComponent, ForensicScannerClearMessage>(OnClear);
+            SubscribeLocalEvent<Components.ForensicScannerComponent, ForensicScannerDoAfterEvent>(OnDoAfter);
         }
 
-        private void UpdateUserInterface(EntityUid uid, ForensicScannerComponent component)
+        private void UpdateUserInterface(EntityUid uid, Components.ForensicScannerComponent component)
         {
             var state = new ForensicScannerBoundUserInterfaceState(
                 component.Fingerprints,
@@ -61,17 +59,17 @@ namespace Content.Server.Forensics
             _uiSystem.SetUiState(uid, ForensicScannerUiKey.Key, state);
         }
 
-        private void OnDoAfter(EntityUid uid, ForensicScannerComponent component, DoAfterEvent args)
+        private void OnDoAfter(EntityUid uid, Components.ForensicScannerComponent component, DoAfterEvent args)
         {
             if (args.Handled || args.Cancelled)
                 return;
 
-            if (!EntityManager.TryGetComponent(uid, out ForensicScannerComponent? scanner))
+            if (!EntityManager.TryGetComponent(uid, out Components.ForensicScannerComponent? scanner))
                 return;
 
             if (args.Args.Target != null)
             {
-                if (!TryComp<ForensicsComponent>(args.Args.Target, out var forensics))
+                if (!TryComp<Components.ForensicsComponent>(args.Args.Target, out var forensics))
                 {
                     scanner.Fingerprints = new();
                     scanner.Fibers = new();
@@ -103,7 +101,7 @@ namespace Content.Server.Forensics
         /// <remarks>
         /// Hosts logic common between OnUtilityVerb and OnAfterInteract.
         /// </remarks>
-        private void StartScan(EntityUid uid, ForensicScannerComponent component, EntityUid user, EntityUid target)
+        private void StartScan(EntityUid uid, Components.ForensicScannerComponent component, EntityUid user, EntityUid target)
         {
             _doAfterSystem.TryStartDoAfter(new DoAfterArgs(EntityManager, user, component.ScanDelay, new ForensicScannerDoAfterEvent(), uid, target: target, used: uid)
             {
@@ -112,7 +110,7 @@ namespace Content.Server.Forensics
             });
         }
 
-        private void OnUtilityVerb(EntityUid uid, ForensicScannerComponent component, GetVerbsEvent<UtilityVerb> args)
+        private void OnUtilityVerb(EntityUid uid, Components.ForensicScannerComponent component, GetVerbsEvent<UtilityVerb> args)
         {
             if (!args.CanInteract || !args.CanAccess || component.CancelToken != null)
                 return;
@@ -128,7 +126,7 @@ namespace Content.Server.Forensics
             args.Verbs.Add(verb);
         }
 
-        private void OnAfterInteract(EntityUid uid, ForensicScannerComponent component, AfterInteractEvent args)
+        private void OnAfterInteract(EntityUid uid, Components.ForensicScannerComponent component, AfterInteractEvent args)
         {
             if (component.CancelToken != null || args.Target == null || !args.CanReach)
                 return;
@@ -136,12 +134,12 @@ namespace Content.Server.Forensics
             StartScan(uid, component, args.User, args.Target.Value);
         }
 
-        private void OnAfterInteractUsing(EntityUid uid, ForensicScannerComponent component, AfterInteractUsingEvent args)
+        private void OnAfterInteractUsing(EntityUid uid, Components.ForensicScannerComponent component, AfterInteractUsingEvent args)
         {
             if (args.Handled || !args.CanReach)
                 return;
 
-            if (!TryComp<ForensicPadComponent>(args.Used, out var pad))
+            if (!TryComp<Components.ForensicPadComponent>(args.Used, out var pad))
                 return;
 
             foreach (var fiber in component.Fibers)
@@ -168,19 +166,19 @@ namespace Content.Server.Forensics
             _popupSystem.PopupEntity(Loc.GetString("forensic-scanner-match-none"), uid, args.User);
         }
 
-        private void OnBeforeActivatableUIOpen(EntityUid uid, ForensicScannerComponent component, BeforeActivatableUIOpenEvent args)
+        private void OnBeforeActivatableUIOpen(EntityUid uid, Components.ForensicScannerComponent component, BeforeActivatableUIOpenEvent args)
         {
             UpdateUserInterface(uid, component);
         }
 
-        private void OpenUserInterface(EntityUid user, Entity<ForensicScannerComponent> scanner)
+        private void OpenUserInterface(EntityUid user, Entity<Components.ForensicScannerComponent> scanner)
         {
             UpdateUserInterface(scanner, scanner.Comp);
 
             _uiSystem.OpenUi(scanner.Owner, ForensicScannerUiKey.Key, user);
         }
 
-        private void OnPrint(EntityUid uid, ForensicScannerComponent component, ForensicScannerPrintMessage args)
+        private void OnPrint(EntityUid uid, Components.ForensicScannerComponent component, ForensicScannerPrintMessage args)
         {
             var user = args.Actor;
 
@@ -248,7 +246,7 @@ namespace Content.Server.Forensics
             component.PrintReadyAt = _gameTiming.CurTime + component.PrintCooldown;
         }
 
-        private void OnClear(EntityUid uid, ForensicScannerComponent component, ForensicScannerClearMessage args)
+        private void OnClear(EntityUid uid, Components.ForensicScannerComponent component, ForensicScannerClearMessage args)
         {
             component.Fingerprints = new();
             component.Fibers = new();

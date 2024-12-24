@@ -1,11 +1,9 @@
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
-using Content.Shared.Humanoid.Prototypes;
-using Content.Shared.Preferences;
 using Content.Shared.Verbs;
 using Robust.Shared.GameObjects.Components.Localization;
 
-namespace Content.Server.Humanoid;
+namespace Content.Server.Humanoid.Systems;
 
 public sealed partial class HumanoidAppearanceSystem : SharedHumanoidAppearanceSystem
 {

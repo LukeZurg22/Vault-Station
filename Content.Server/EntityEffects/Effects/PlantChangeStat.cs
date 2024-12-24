@@ -1,11 +1,11 @@
-using Content.Server.Botany;
 using Content.Server.Botany.Components;
+using Content.Server.Botany.Systems;
 using Content.Shared.EntityEffects;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
-namespace Content.Server.EntityEffects.Effects.PlantMetabolism;
+namespace Content.Server.EntityEffects.Effects;
 
 [UsedImplicitly]
 public sealed partial class PlantChangeStat : EntityEffect

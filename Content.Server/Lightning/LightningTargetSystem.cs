@@ -1,10 +1,9 @@
 using Content.Server.Explosion.EntitySystems;
-using Content.Server.Lightning;
 using Content.Server.Lightning.Components;
 using Content.Shared.Damage;
 using Robust.Server.GameObjects;
 
-namespace Content.Server.Tesla.EntitySystems;
+namespace Content.Server.Lightning;
 
 /// <summary>
 /// The component allows lightning to strike this target. And determining the behavior of the target when struck by lightning.

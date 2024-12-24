@@ -13,6 +13,7 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Verbs;
 using Robust.Shared.Utility;
+using WearingStethoscopeComponent = Content.Server.Medical.Stethoscope.Components.WearingStethoscopeComponent;
 
 namespace Content.Server.Medical.Stethoscope
 {

@@ -1,3 +1,5 @@
+using Content.Server.Stunnable.Systems;
+
 namespace Content.Server.Stunnable.Components
 {
     /// <summary>

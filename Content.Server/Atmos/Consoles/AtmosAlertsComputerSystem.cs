@@ -1,4 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Content.Server.Atmos.Monitor.Components;
+using Content.Server.Atmos.Monitor.Systems;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Pinpointer;
@@ -14,10 +17,8 @@ using Content.Shared.Tag;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
 
-namespace Content.Server.Atmos.Monitor.Systems;
+namespace Content.Server.Atmos.Consoles;
 
 public sealed class AtmosAlertsComputerSystem : SharedAtmosAlertsComputerSystem
 {

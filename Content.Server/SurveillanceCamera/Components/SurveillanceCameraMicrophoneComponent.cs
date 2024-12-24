@@ -1,6 +1,6 @@
 using Content.Shared.Whitelist;
 
-namespace Content.Server.SurveillanceCamera;
+namespace Content.Server.SurveillanceCamera.Components;
 
 /// <summary>
 ///     Component that allows surveillance cameras to listen to the local

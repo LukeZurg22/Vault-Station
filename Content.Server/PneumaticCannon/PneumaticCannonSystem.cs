@@ -2,6 +2,7 @@ using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Storage.EntitySystems;
 using Content.Server.Stunnable;
+using Content.Server.Stunnable.Systems;
 using Content.Server.Weapons.Ranged.Systems;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Interaction;

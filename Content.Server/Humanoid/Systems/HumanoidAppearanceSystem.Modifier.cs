@@ -6,7 +6,7 @@ using Robust.Server.GameObjects;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Humanoid;
+namespace Content.Server.Humanoid.Systems;
 
 public sealed partial class HumanoidAppearanceSystem
 {

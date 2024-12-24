@@ -68,7 +68,7 @@ public sealed class GeneralStationRecordConsoleSystem : EntitySystem
         var (uid, console) = ent;
         var owningStation = _station.GetOwningStation(uid);
 
-        if (!TryComp<StationRecordsComponent>(owningStation, out var stationRecords))
+        if (!TryComp<Components.StationRecordsComponent>(owningStation, out var stationRecords))
         {
             _ui.SetUiState(uid, GeneralStationRecordConsoleKey.Key, new GeneralStationRecordConsoleState());
             return;

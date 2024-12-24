@@ -10,7 +10,7 @@ namespace Content.Server.GameTicking.Rules;
 /// <summary>
 /// Handles storing grids from <see cref="RuleLoadedGridsEvent"/> and antags spawning on their spawners.
 /// </summary>
-public sealed class RuleGridsSystem : GameRuleSystem<RuleGridsComponent>
+public sealed class RuleGridsSystem : GameRuleSystem<Components.RuleGridsComponent>
 {
     [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
@@ -21,8 +21,8 @@ public sealed class RuleGridsSystem : GameRuleSystem<RuleGridsComponent>
 
         SubscribeLocalEvent<GridSplitEvent>(OnGridSplit);
 
-        SubscribeLocalEvent<RuleGridsComponent, RuleLoadedGridsEvent>(OnLoadedGrids);
-        SubscribeLocalEvent<RuleGridsComponent, AntagSelectLocationEvent>(OnSelectLocation);
+        SubscribeLocalEvent<Components.RuleGridsComponent, RuleLoadedGridsEvent>(OnLoadedGrids);
+        SubscribeLocalEvent<Components.RuleGridsComponent, AntagSelectLocationEvent>(OnSelectLocation);
     }
 
     private void OnGridSplit(ref GridSplitEvent args)
@@ -38,7 +38,7 @@ public sealed class RuleGridsSystem : GameRuleSystem<RuleGridsComponent>
         }
     }
 
-    private void OnLoadedGrids(Entity<RuleGridsComponent> ent, ref RuleLoadedGridsEvent args)
+    private void OnLoadedGrids(Entity<Components.RuleGridsComponent> ent, ref RuleLoadedGridsEvent args)
     {
         var (uid, comp) = ent;
         if (comp.Map != null && args.Map != comp.Map)
@@ -51,7 +51,7 @@ public sealed class RuleGridsSystem : GameRuleSystem<RuleGridsComponent>
         comp.MapGrids.AddRange(args.Grids);
     }
 
-    private void OnSelectLocation(Entity<RuleGridsComponent> ent, ref AntagSelectLocationEvent args)
+    private void OnSelectLocation(Entity<Components.RuleGridsComponent> ent, ref AntagSelectLocationEvent args)
     {
         var query = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out _, out var xform))

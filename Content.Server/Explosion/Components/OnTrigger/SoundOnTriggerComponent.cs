@@ -1,7 +1,7 @@
 using Content.Server.Explosion.EntitySystems;
 using Robust.Shared.Audio;
 
-namespace Content.Server.Explosion.Components;
+namespace Content.Server.Explosion.Components.OnTrigger;
 
 /// <summary>
 /// Will play sound from the attached entity upon a <see cref="TriggerEvent"/>.

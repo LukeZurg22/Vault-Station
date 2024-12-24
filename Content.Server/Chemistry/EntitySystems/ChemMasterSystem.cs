@@ -19,6 +19,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Labels.Label;
 
 namespace Content.Server.Chemistry.EntitySystems
 {

@@ -4,7 +4,7 @@ using Content.Shared.Administration;
 using Robust.Shared.Console;
 using Robust.Shared.Map.Components;
 
-namespace Content.Server.Decals;
+namespace Content.Server.Decals.Commands;
 
 [AdminCommand(AdminFlags.Mapping)]
 public sealed class EditDecalCommand : IConsoleCommand

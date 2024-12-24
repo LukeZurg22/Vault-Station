@@ -1,4 +1,4 @@
-namespace Content.Server.Forensics
+namespace Content.Server.Forensics.Components
 {
     /// <summary>
     /// Used to take a sample of someone's fingerprints.

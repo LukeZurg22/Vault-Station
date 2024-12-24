@@ -1,4 +1,4 @@
-using Content.Server.Labels.Components;
+using Content.Server.Labels.Label.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Examine;
 using Content.Shared.Labels;
@@ -8,7 +8,7 @@ using Content.Shared.Paper;
 using JetBrains.Annotations;
 using Robust.Shared.Containers;
 
-namespace Content.Server.Labels
+namespace Content.Server.Labels.Label
 {
     /// <summary>
     /// A system that lets players see the contents of a label on an object.

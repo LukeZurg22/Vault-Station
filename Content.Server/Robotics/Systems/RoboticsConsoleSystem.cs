@@ -2,17 +2,16 @@ using Content.Server.Administration.Logs;
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Systems;
 using Content.Server.Radio.EntitySystems;
-using Content.Shared.Lock;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
+using Content.Shared.Lock;
 using Content.Shared.Robotics;
 using Content.Shared.Robotics.Components;
 using Content.Shared.Robotics.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Timing;
-using System.Diagnostics.CodeAnalysis;
 
-namespace Content.Server.Research.Systems;
+namespace Content.Server.Robotics.Systems;
 
 /// <summary>
 /// Handles UI and state receiving for the robotics control console.

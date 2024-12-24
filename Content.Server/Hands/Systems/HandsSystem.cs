@@ -2,6 +2,7 @@ using System.Numerics;
 using Content.Server.Inventory;
 using Content.Server.Stack;
 using Content.Server.Stunnable;
+using Content.Server.Stunnable.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Body.Part;
 using Content.Shared.CombatMode;

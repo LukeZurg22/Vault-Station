@@ -1,4 +1,4 @@
-namespace Content.Server.Explosion.Components;
+namespace Content.Server.Explosion.Components.OnTrigger;
 
 /// <summary>
 /// Gibs on trigger, self explanatory.

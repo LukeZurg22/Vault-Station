@@ -1,6 +1,6 @@
 using Content.Server.Explosion.EntitySystems;
 
-namespace Content.Server.Explosion.Components;
+namespace Content.Server.Explosion.Components.OnTrigger;
 
 /// <summary>
 /// Will anchor the attached entity upon a <see cref="TriggerEvent"/>.

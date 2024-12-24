@@ -1,11 +1,10 @@
 using Content.Server.Advertise.Components;
 using Content.Server.Chat.Systems;
-using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using ActivatableUIComponent = Content.Shared.UserInterface.ActivatableUIComponent;
 
-namespace Content.Server.Advertise;
+namespace Content.Server.Advertise.EntitySystems;
 
 public sealed partial class SpeakOnUIClosedSystem : EntitySystem
 {

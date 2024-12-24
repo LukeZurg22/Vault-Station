@@ -4,6 +4,7 @@ using Content.Shared.Flash.Components;
 using Content.Server.Light.EntitySystems;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
+using Content.Server.Stunnable.Systems;
 using Content.Shared.Charges.Components;
 using Content.Shared.Charges.Systems;
 using Content.Shared.Eye.Blinding.Components;

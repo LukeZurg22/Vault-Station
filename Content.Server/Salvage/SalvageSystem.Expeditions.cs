@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Threading;
 using Content.Server.Salvage.Expeditions;
-using Content.Server.Salvage.Expeditions.Structure;
 using Content.Shared.CCVar;
 using Content.Shared.Examine;
 using Content.Shared.Random.Helpers;
@@ -11,6 +10,7 @@ using Robust.Shared.CPUJob.JobQueues;
 using Robust.Shared.CPUJob.JobQueues.Queues;
 using Robust.Shared.GameStates;
 using Robust.Shared.Map;
+using SalvageStructureComponent = Content.Server.Salvage.Expeditions.SalvageStructureComponent;
 
 namespace Content.Server.Salvage;
 

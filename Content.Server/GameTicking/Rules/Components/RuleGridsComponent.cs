@@ -1,6 +1,7 @@
-using Content.Server.GameTicking.Rules;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
+
+namespace Content.Server.GameTicking.Rules.Components;
 
 /// <summary>
 /// Stores grids created by another gamerule component.

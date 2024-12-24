@@ -1,4 +1,4 @@
-namespace Content.Server.Salvage.Expeditions.Structure;
+namespace Content.Server.Salvage.Expeditions;
 
 /// <summary>
 /// Mission objective for salvage expeditions.

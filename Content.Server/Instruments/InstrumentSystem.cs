@@ -2,6 +2,7 @@ using Content.Server.Administration;
 using Content.Server.Interaction;
 using Content.Server.Popups;
 using Content.Server.Stunnable;
+using Content.Server.Stunnable.Systems;
 using Content.Shared.Administration;
 using Content.Shared.Examine;
 using Content.Shared.Instruments;

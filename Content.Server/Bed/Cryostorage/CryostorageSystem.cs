@@ -27,6 +27,7 @@ using Robust.Shared.Containers;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using StationRecordsComponent = Content.Server.StationRecords.Components.StationRecordsComponent;
 
 namespace Content.Server.Bed.Cryostorage;
 

@@ -1,6 +1,6 @@
 ﻿using Content.Server.Store.Systems;
 
-namespace Content.Server.Store.Components;
+namespace Content.Server.Store;
 
 /// <summary>
 ///     Keeps track of entities bought from stores for refunds, especially useful if entities get deleted before they can be refunded.

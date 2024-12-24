@@ -331,7 +331,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
             if (nukeops.WarDeclaredTime != null)
                 continue;
 
-            if (TryComp<RuleGridsComponent>(uid, out var grids) && Transform(ev.DeclaratorEntity).MapID != grids.Map)
+            if (TryComp<Components.RuleGridsComponent>(uid, out var grids) && Transform(ev.DeclaratorEntity).MapID != grids.Map)
                 continue;
 
             var newStatus = GetWarCondition(nukeops, ev.Status);
@@ -452,7 +452,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
 
         // Check that there are spawns available and that they can access the shuttle.
         var spawnsAvailable = EntityQuery<NukeOperativeSpawnerComponent>(true).Any();
-        if (spawnsAvailable && CompOrNull<RuleGridsComponent>(ent)?.Map == shuttleMapId)
+        if (spawnsAvailable && CompOrNull<Components.RuleGridsComponent>(ent)?.Map == shuttleMapId)
             return; // Ghost spawns can still access the shuttle. Continue the round.
 
         // The shuttle is inaccessible to both living nuke operatives and yet to spawn nuke operatives,
@@ -494,7 +494,7 @@ public sealed class NukeopsRuleSystem : GameRuleSystem<NukeopsRuleComponent>
     /// Is this method the shitty glue holding together the last of my sanity? yes.
     /// Do i have a better solution? not presently.
     /// </remarks>
-    private EntityUid? GetOutpost(Entity<RuleGridsComponent?> ent)
+    private EntityUid? GetOutpost(Entity<Components.RuleGridsComponent?> ent)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return null;

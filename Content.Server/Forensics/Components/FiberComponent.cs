@@ -1,4 +1,4 @@
-namespace Content.Server.Forensics
+namespace Content.Server.Forensics.Components
 {
     /// <summary>
     /// This controls fibers left by gloves on items,

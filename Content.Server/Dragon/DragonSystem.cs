@@ -51,19 +51,19 @@ public sealed partial class DragonSystem : EntitySystem
 
         _objQuery = GetEntityQuery<CarpRiftsConditionComponent>();
 
-        SubscribeLocalEvent<DragonComponent, MapInitEvent>(OnInit);
-        SubscribeLocalEvent<DragonComponent, ComponentShutdown>(OnShutdown);
-        SubscribeLocalEvent<DragonComponent, DragonSpawnRiftActionEvent>(OnSpawnRift);
-        SubscribeLocalEvent<DragonComponent, RefreshMovementSpeedModifiersEvent>(OnDragonMove);
-        SubscribeLocalEvent<DragonComponent, MobStateChangedEvent>(OnMobStateChanged);
-        SubscribeLocalEvent<DragonComponent, EntityZombifiedEvent>(OnZombified);
+        SubscribeLocalEvent<Components.DragonComponent, MapInitEvent>(OnInit);
+        SubscribeLocalEvent<Components.DragonComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<Components.DragonComponent, DragonSpawnRiftActionEvent>(OnSpawnRift);
+        SubscribeLocalEvent<Components.DragonComponent, RefreshMovementSpeedModifiersEvent>(OnDragonMove);
+        SubscribeLocalEvent<Components.DragonComponent, MobStateChangedEvent>(OnMobStateChanged);
+        SubscribeLocalEvent<Components.DragonComponent, EntityZombifiedEvent>(OnZombified);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<DragonComponent>();
+        var query = EntityQueryEnumerator<Components.DragonComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
             if (comp.WeakenedAccumulator > 0f)
@@ -87,7 +87,7 @@ public sealed partial class DragonSystem : EntitySystem
             {
                 var lastRift = comp.Rifts[^1];
 
-                if (TryComp<DragonRiftComponent>(lastRift, out var rift) && rift.State != DragonRiftState.Finished)
+                if (TryComp<Components.DragonRiftComponent>(lastRift, out var rift) && rift.State != DragonRiftState.Finished)
                 {
                     comp.RiftAccumulator = 0f;
                     continue;
@@ -106,18 +106,18 @@ public sealed partial class DragonSystem : EntitySystem
         }
     }
 
-    private void OnInit(EntityUid uid, DragonComponent component, MapInitEvent args)
+    private void OnInit(EntityUid uid, Components.DragonComponent component, MapInitEvent args)
     {
         Roar(uid, component);
         _actions.AddAction(uid, ref component.SpawnRiftActionEntity, component.SpawnRiftAction);
     }
 
-    private void OnShutdown(EntityUid uid, DragonComponent component, ComponentShutdown args)
+    private void OnShutdown(EntityUid uid, Components.DragonComponent component, ComponentShutdown args)
     {
         DeleteRifts(uid, false, component);
     }
 
-    private void OnSpawnRift(EntityUid uid, DragonComponent component, DragonSpawnRiftActionEvent args)
+    private void OnSpawnRift(EntityUid uid, Components.DragonComponent component, DragonSpawnRiftActionEvent args)
     {
         if (component.Weakened)
         {
@@ -131,7 +131,7 @@ public sealed partial class DragonSystem : EntitySystem
             return;
         }
 
-        if (component.Rifts.Count > 0 && TryComp<DragonRiftComponent>(component.Rifts[^1], out var rift) && rift.State != DragonRiftState.Finished)
+        if (component.Rifts.Count > 0 && TryComp<Components.DragonRiftComponent>(component.Rifts[^1], out var rift) && rift.State != DragonRiftState.Finished)
         {
             _popup.PopupEntity(Loc.GetString("carp-rift-duplicate"), uid, uid);
             return;
@@ -147,7 +147,7 @@ public sealed partial class DragonSystem : EntitySystem
         }
 
         // cant stack rifts near eachother
-        foreach (var (_, riftXform) in EntityQuery<DragonRiftComponent, TransformComponent>(true))
+        foreach (var (_, riftXform) in EntityQuery<Components.DragonRiftComponent, TransformComponent>(true))
         {
             if (_transform.InRange(riftXform.Coordinates, xform.Coordinates, RiftRange))
             {
@@ -168,11 +168,11 @@ public sealed partial class DragonSystem : EntitySystem
 
         var carpUid = Spawn(component.RiftPrototype, _transform.GetMapCoordinates(uid, xform: xform));
         component.Rifts.Add(carpUid);
-        Comp<DragonRiftComponent>(carpUid).Dragon = uid;
+        Comp<Components.DragonRiftComponent>(carpUid).Dragon = uid;
     }
 
     // TODO: just make this a move speed modifier component???
-    private void OnDragonMove(EntityUid uid, DragonComponent component, RefreshMovementSpeedModifiersEvent args)
+    private void OnDragonMove(EntityUid uid, Components.DragonComponent component, RefreshMovementSpeedModifiersEvent args)
     {
         if (component.Weakened)
         {
@@ -180,7 +180,7 @@ public sealed partial class DragonSystem : EntitySystem
         }
     }
 
-    private void OnMobStateChanged(EntityUid uid, DragonComponent component, MobStateChangedEvent args)
+    private void OnMobStateChanged(EntityUid uid, Components.DragonComponent component, MobStateChangedEvent args)
     {
         // Deletes all rifts after dying
         if (args.NewMobState != MobState.Dead)
@@ -193,13 +193,13 @@ public sealed partial class DragonSystem : EntitySystem
         DeleteRifts(uid, false, component);
     }
 
-    private void OnZombified(Entity<DragonComponent> ent, ref EntityZombifiedEvent args)
+    private void OnZombified(Entity<Components.DragonComponent> ent, ref EntityZombifiedEvent args)
     {
         // prevent carp attacking zombie dragon
         _faction.AddFaction(ent.Owner, ent.Comp.Faction);
     }
 
-    private void Roar(EntityUid uid, DragonComponent comp)
+    private void Roar(EntityUid uid, Components.DragonComponent comp)
     {
         if (comp.SoundRoar != null)
             _audio.PlayPvs(comp.SoundRoar, uid);
@@ -211,7 +211,7 @@ public sealed partial class DragonSystem : EntitySystem
     /// <param name="uid">Entity id of the dragon</param>
     /// <param name="resetRole">If true, the role's rift count will be reset too</param>
     /// <param name="comp">The dragon component</param>
-    public void DeleteRifts(EntityUid uid, bool resetRole, DragonComponent? comp = null)
+    public void DeleteRifts(EntityUid uid, bool resetRole, Components.DragonComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
             return;
@@ -241,7 +241,7 @@ public sealed partial class DragonSystem : EntitySystem
     /// <summary>
     /// Increment the dragon role's charged rift count.
     /// </summary>
-    public void RiftCharged(EntityUid uid, DragonComponent? comp = null)
+    public void RiftCharged(EntityUid uid, Components.DragonComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
             return;
@@ -263,7 +263,7 @@ public sealed partial class DragonSystem : EntitySystem
     /// <summary>
     /// Do everything that needs to happen when a rift gets destroyed by the crew.
     /// </summary>
-    public void RiftDestroyed(EntityUid uid, DragonComponent? comp = null)
+    public void RiftDestroyed(EntityUid uid, Components.DragonComponent? comp = null)
     {
         if (!Resolve(uid, ref comp))
             return;

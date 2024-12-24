@@ -1,0 +1,177 @@
+- type: entity
+  parent: BaseItem
+  id: CoinPiece
+  name: pieces
+  description: If you have the coin, you can get the wares.
+  components:
+  - type: Cash
+  - type: Item
+    shape:
+    - 0,0,0,0   # Up, Down, Left, Right (?)
+    storedOffset: 0,0
+  - type: Currency
+    price:
+      Speso: 1
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Coin: 1
+  - type: StaticPrice
+    price: 0
+  - type: Stack
+    stackType: Coin
+    count: 1
+    baseLayer: base
+    layerStates:
+    - coin_copper
+    - coin_2
+    - coin_3
+    - coin_4
+    - coin_5
+    - coin_6
+    - coin_7
+    - coin_8
+    - coin_9
+    - coin_iron
+    - coin_20
+    - coin_30
+    - coin_40
+    - coin_50
+    - coin_60
+    - coin_70
+    - coin_80
+    - coin_90
+    - coin_silver
+    - coin_200
+    - coin_300
+    - coin_400
+    - coin_500
+    - coin_600
+    - coin_700
+    - coin_800
+    - coin_900
+    - coin_gold
+    - coin_2000
+    - coin_3000
+    - coin_4000
+    - coin_5000
+    - coin_6000
+    - coin_7000
+    - coin_8000
+    - coin_9000
+    - coin_platinum
+    - coin_20000
+    - coin_30000
+    - coin_40000
+    - coin_50000
+    - coin_60000
+    - coin_70000
+    - coin_80000
+    - coin_90000
+    - coin_splendurium
+    - coin_200000
+    - coin_300000
+    - coin_400000
+    - coin_500000
+    - coin_600000
+    - coin_700000
+    - coin_800000
+    - coin_900000
+    - coin_1000000
+    layerFunction: Threshold # Frontier: multicolour coin
+  - type: StackLayerThreshold # Frontier
+    thresholds: [1,2,3,4,5,6,7,8,9,10,20,30,40,50,60,70,80,90,100,200,300,400,500,600,700,800,900,1000,2000,3000,4000,5000,6000,7000,8000,9000,10000,20000,30000,40000,50000,60000,70000,80000,90000,100000,200000,300000,400000,500000,600000,700000,800000,900000,1000000] # Vault Station
+  - type: Sprite
+    sprite: _VS/Objects/Economy/coin.rsi # Frontier: larger denominations
+    state: coin_copper
+    layers:
+    - state: coin
+      map: ["base"]
+  - type: Physics
+    bodyType: Dynamic
+  - type: Fixtures
+    fixtures:
+      fix1:
+        density: 30
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.35,-0.2,0.25,0.1"
+        mask:
+        - ItemMask
+  - type: Appearance
+  - type: CargoSellBlacklist
+
+- type: material
+  id: Coin
+  name: piece
+  unit: materials-unit-bill
+  stackEntity: CoinPiece
+  icon: { sprite: _VS/Objects/Economy/coin.rsi, state: coin_copper } # Frontier: use Frontier sprite set
+  price: 1
+
+# Copper Spawner
+- type: stack
+  id: Coin
+  name: piece
+  icon: { sprite: _VS/Objects/Economy/coin.rsi, state: coin_copper } # Frontier: use Frontier sprite set
+  spawn: CoinPiece
+
+# Iron Spawner
+- type: entity
+  parent: CoinPiece
+  id: CoinPiece10
+  suffix: 10
+  components:
+  - type: Icon
+    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    state: coin_iron
+  - type: Stack
+    count: 10
+
+# Silver Spawner
+- type: entity
+  parent: CoinPiece
+  id: CoinPiece100
+  suffix: 100
+  components:
+  - type: Icon
+    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    state: coin_silver
+  - type: Stack
+    count: 100
+
+# Gold Spawner
+- type: entity
+  parent: CoinPiece
+  id: CoinPiece1000
+  suffix: 1000
+  components:
+  - type: Icon
+    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    state: coin_gold
+  - type: Stack
+    count: 1000
+
+# Platinum Spawner
+- type: entity
+  parent: CoinPiece
+  id: CoinPiece10000
+  suffix: 10000
+  components:
+  - type: Icon
+    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    state: coin_platinum
+  - type: Stack
+    count: 10000
+
+# Splendurium Spawner
+- type: entity
+  parent: CoinPiece
+  id: CoinPiece100000
+  suffix: 100000
+  components:
+  - type: Icon
+    sprite: _VS/Objects/Economy/coin.rsi # Frontier: use Frontier sprite set
+    state: coin_splendurium
+  - type: Stack
+    count: 100000

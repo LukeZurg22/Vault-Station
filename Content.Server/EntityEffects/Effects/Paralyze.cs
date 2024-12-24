@@ -1,4 +1,5 @@
 using Content.Server.Stunnable;
+using Content.Server.Stunnable.Systems;
 using Content.Shared.EntityEffects;
 using Robust.Shared.Prototypes;
 

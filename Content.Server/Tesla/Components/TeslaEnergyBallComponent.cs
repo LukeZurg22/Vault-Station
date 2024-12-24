@@ -1,4 +1,4 @@
-using Content.Server.Tesla.EntitySystems;
+using Content.Server.Tesla.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 

@@ -10,6 +10,8 @@ using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using DnaComponent = Content.Server.Forensics.Components.DnaComponent;
+using FingerprintComponent = Content.Server.Forensics.Components.FingerprintComponent;
 
 namespace Content.Server.StationRecords.Systems;
 
@@ -49,7 +51,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
 
     private void OnPlayerSpawn(PlayerSpawnCompleteEvent args)
     {
-        if (!TryComp<StationRecordsComponent>(args.Station, out var stationRecords))
+        if (!TryComp<Components.StationRecordsComponent>(args.Station, out var stationRecords))
             return;
 
         CreateGeneralRecord(args.Station, args.Mob, args.Profile, args.JobId, stationRecords);
@@ -80,7 +82,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     }
 
     private void CreateGeneralRecord(EntityUid station, EntityUid player, HumanoidCharacterProfile profile,
-        string? jobId, StationRecordsComponent records)
+        string? jobId, Components.StationRecordsComponent records)
     {
         // TODO make PlayerSpawnCompleteEvent.JobId a ProtoId
         if (string.IsNullOrEmpty(jobId)
@@ -135,7 +137,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
         string? mobFingerprint,
         string? dna,
         HumanoidCharacterProfile profile,
-        StationRecordsComponent records)
+        Components.StationRecordsComponent records)
     {
         if (!_prototypeManager.TryIndex<JobPrototype>(jobId, out var jobPrototype))
             throw new ArgumentException($"Invalid job prototype ID: {jobId}");
@@ -197,7 +199,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// <param name="key">The station and key to remove.</param>
     /// <param name="records">Station records component.</param>
     /// <returns>True if the record was removed, false otherwise.</returns>
-    public bool RemoveRecord(StationRecordKey key, StationRecordsComponent? records = null)
+    public bool RemoveRecord(StationRecordKey key, Components.StationRecordsComponent? records = null)
     {
         if (!Resolve(key.OriginStation, ref records))
             return false;
@@ -221,7 +223,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// <param name="records">Station record component.</param>
     /// <typeparam name="T">Type to get from the record set.</typeparam>
     /// <returns>True if the record was obtained, false otherwise.</returns>
-    public bool TryGetRecord<T>(StationRecordKey key, [NotNullWhen(true)] out T? entry, StationRecordsComponent? records = null)
+    public bool TryGetRecord<T>(StationRecordKey key, [NotNullWhen(true)] out T? entry, Components.StationRecordsComponent? records = null)
     {
         entry = default;
 
@@ -237,7 +239,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// <remarks>
     /// Linear search so O(n) time complexity.
     /// </remarks>
-    public uint? GetRecordByName(EntityUid station, string name, StationRecordsComponent? records = null)
+    public uint? GetRecordByName(EntityUid station, string name, Components.StationRecordsComponent? records = null)
     {
         if (!Resolve(station, ref records, false))
             return null;
@@ -269,7 +271,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// <param name="records">Station records component.</param>
     /// <typeparam name="T">Type of record to fetch</typeparam>
     /// <returns>Enumerable of pairs with a station record key, and the entry in question of type T.</returns>
-    public IEnumerable<(uint, T)> GetRecordsOfType<T>(EntityUid station, StationRecordsComponent? records = null)
+    public IEnumerable<(uint, T)> GetRecordsOfType<T>(EntityUid station, Components.StationRecordsComponent? records = null)
     {
         if (!Resolve(station, ref records))
             return Array.Empty<(uint, T)>();
@@ -284,7 +286,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// <param name="record">The record to add.</param>
     /// <param name="records">Station records component.</param>
     /// <typeparam name="T">The type of record to add.</typeparam>
-    public StationRecordKey AddRecordEntry<T>(EntityUid station, T record, StationRecordsComponent? records = null)
+    public StationRecordKey AddRecordEntry<T>(EntityUid station, T record, Components.StationRecordsComponent? records = null)
     {
         if (!Resolve(station, ref records))
             return StationRecordKey.Invalid;
@@ -304,7 +306,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// <param name="records">Station records component.</param>
     /// <typeparam name="T">The type of record to add.</typeparam>
     public void AddRecordEntry<T>(StationRecordKey key, T record,
-        StationRecordsComponent? records = null)
+        Components.StationRecordsComponent? records = null)
     {
         if (!Resolve(key.OriginStation, ref records))
             return;
@@ -317,7 +319,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// </summary>
     /// <param name="station">The station to synchronize any recently accessed records with..</param>
     /// <param name="records">Station records component.</param>
-    public void Synchronize(EntityUid station, StationRecordsComponent? records = null)
+    public void Synchronize(EntityUid station, Components.StationRecordsComponent? records = null)
     {
         if (!Resolve(station, ref records))
             return;
@@ -335,7 +337,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// </summary>
     /// <param name="key">The station and id of the record</param>
     /// <param name="records">Station records component.</param>
-    public void Synchronize(StationRecordKey key, StationRecordsComponent? records = null)
+    public void Synchronize(StationRecordKey key, Components.StationRecordsComponent? records = null)
     {
         if (!Resolve(key.OriginStation, ref records))
             return;
@@ -383,7 +385,7 @@ public sealed class StationRecordsSystem : SharedStationRecordsSystem
     /// <summary>
     /// Build a record listing of id to name for a station and filter.
     /// </summary>
-    public Dictionary<uint, string> BuildListing(Entity<StationRecordsComponent> station, StationRecordsFilter? filter)
+    public Dictionary<uint, string> BuildListing(Entity<Components.StationRecordsComponent> station, StationRecordsFilter? filter)
     {
         var listing = new Dictionary<uint, string>();
 

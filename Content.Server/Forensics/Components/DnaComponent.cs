@@ -1,4 +1,4 @@
-﻿namespace Content.Server.Forensics;
+﻿namespace Content.Server.Forensics.Components;
 
 /// <summary>
 /// This component is for mobs that have DNA.

@@ -1,6 +1,6 @@
 using Content.Server.StationRecords.Systems;
 
-namespace Content.Server.StationRecords;
+namespace Content.Server.StationRecords.Components;
 
 [Access(typeof(StationRecordsSystem))]
 [RegisterComponent]

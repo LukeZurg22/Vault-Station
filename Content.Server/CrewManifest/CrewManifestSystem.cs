@@ -16,6 +16,7 @@ using Robust.Shared.Console;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using StationRecordsComponent = Content.Server.StationRecords.Components.StationRecordsComponent;
 
 namespace Content.Server.CrewManifest;
 

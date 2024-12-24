@@ -5,7 +5,7 @@ using Content.Server.Storage.EntitySystems;
 using Content.Shared.CombatMode;
 using Robust.Server.Containers;
 
-namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat.Melee;
+namespace Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat;
 
 public sealed partial class EscapeOperator : HTNOperator, IHtnConditionalShutdown
 {

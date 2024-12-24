@@ -1,6 +1,6 @@
 using static Content.Shared.Arcade.SharedSpaceVillainArcadeComponent;
 
-namespace Content.Server.Arcade.SpaceVillain;
+namespace Content.Server.Arcade.SpaceVillainGame;
 
 public sealed partial class SpaceVillainGame
 {

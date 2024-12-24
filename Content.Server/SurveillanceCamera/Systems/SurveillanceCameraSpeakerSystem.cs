@@ -1,11 +1,11 @@
 using Content.Server.Chat.Systems;
 using Content.Server.Speech;
-using Content.Shared.Speech;
 using Content.Shared.Chat;
+using Content.Shared.Speech;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Timing;
 
-namespace Content.Server.SurveillanceCamera;
+namespace Content.Server.SurveillanceCamera.Systems;
 
 /// <summary>
 ///     This handles speech for surveillance camera monitors.
@@ -20,10 +20,10 @@ public sealed class SurveillanceCameraSpeakerSystem : EntitySystem
     /// <inheritdoc/>
     public override void Initialize()
     {
-        SubscribeLocalEvent<SurveillanceCameraSpeakerComponent, SurveillanceCameraSpeechSendEvent>(OnSpeechSent);
+        SubscribeLocalEvent<Components.SurveillanceCameraSpeakerComponent, SurveillanceCameraSpeechSendEvent>(OnSpeechSent);
     }
 
-    private void OnSpeechSent(EntityUid uid, SurveillanceCameraSpeakerComponent component,
+    private void OnSpeechSent(EntityUid uid, Components.SurveillanceCameraSpeakerComponent component,
         SurveillanceCameraSpeechSendEvent args)
     {
         if (!component.SpeechEnabled)

@@ -5,6 +5,7 @@ using Content.Server.StationRecords.Systems;
 using Content.Shared.StationRecords;
 using Content.Shared.GameTicking.Components;
 using Robust.Shared.Random;
+using StationRecordsComponent = Content.Server.StationRecords.Components.StationRecordsComponent;
 
 namespace Content.Server.StationEvents.Events;
 

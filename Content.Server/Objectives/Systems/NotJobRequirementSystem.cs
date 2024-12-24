@@ -14,10 +14,10 @@ public sealed class NotJobRequirementSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<NotJobRequirementComponent, RequirementCheckEvent>(OnCheck);
+        SubscribeLocalEvent<Components.NotJobRequirementComponent, RequirementCheckEvent>(OnCheck);
     }
 
-    private void OnCheck(EntityUid uid, NotJobRequirementComponent comp, ref RequirementCheckEvent args)
+    private void OnCheck(EntityUid uid, Components.NotJobRequirementComponent comp, ref RequirementCheckEvent args)
     {
         if (args.Cancelled)
             return;

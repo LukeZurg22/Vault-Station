@@ -32,6 +32,8 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Enums;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using DnaComponent = Content.Server.Forensics.Components.DnaComponent;
+using FingerprintComponent = Content.Server.Forensics.Components.FingerprintComponent;
 
 namespace Content.Server.Administration.Systems;
 

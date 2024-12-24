@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Taken from vgstation13 at https://github.com/vgstation-coders/vgstation13/blob/15121b534f4ef10339d96412e22fe3ce4d15a45d/icons/obj/coins.dmi",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "coin_copper"
+    },
+	{
+      "name": "coin_2"
+    },
+	{
+      "name": "coin_3"
+    },
+	{
+      "name": "coin_4"
+    },
+	{
+      "name": "coin_5"
+    },
+	{
+      "name": "coin_6"
+    },
+	{
+      "name": "coin_7"
+    },
+	{
+      "name": "coin_8"
+    },
+	{
+      "name": "coin_9"
+    },
+	{
+      "name": "coin_iron"
+    },
+	{
+      "name": "coin_20"
+    },
+	{
+      "name": "coin_30"
+    },
+	{
+      "name": "coin_40"
+    },
+	{
+      "name": "coin_50"
+    },
+	{
+      "name": "coin_60"
+    },
+	{
+      "name": "coin_70"
+    },
+	{
+      "name": "coin_80"
+    },
+	{
+      "name": "coin_90"
+    },
+	{
+      "name": "coin_silver"
+    },
+	{
+      "name": "coin_200"
+    },
+	{
+      "name": "coin_300"
+    },
+	{
+      "name": "coin_400"
+    },
+	{
+      "name": "coin_500"
+    },
+	{
+      "name": "coin_600"
+    },
+	{
+      "name": "coin_700"
+    },
+	{
+      "name": "coin_800"
+    },
+	{
+      "name": "coin_900"
+    },
+    {
+      "name": "coin_gold"
+    },
+	{
+      "name": "coin_2000"
+    },
+	{
+      "name": "coin_3000"
+    },
+	{
+      "name": "coin_4000"
+    },
+	{
+      "name": "coin_5000"
+    },
+	{
+      "name": "coin_6000"
+    },
+	{
+      "name": "coin_7000"
+    },
+	{
+      "name": "coin_8000"
+    },
+	{
+      "name": "coin_9000"
+    },
+    {
+      "name": "coin_platinum"
+    },
+	{
+      "name": "coin_20000"
+    },
+	{
+      "name": "coin_30000"
+    },
+	{
+      "name": "coin_40000"
+    },
+	{
+      "name": "coin_50000"
+    },
+	{
+      "name": "coin_60000"
+    },
+	{
+      "name": "coin_70000"
+    },
+	{
+      "name": "coin_80000"
+    },
+	{
+      "name": "coin_90000"
+    },
+	{
+      "name": "coin_splendurium"
+    },
+	{
+      "name": "coin_200000"
+    },
+	{
+      "name": "coin_300000"
+    },
+	{
+      "name": "coin_400000"
+    },
+	{
+      "name": "coin_500000"
+    },
+	{
+      "name": "coin_600000"
+    },
+	{
+      "name": "coin_700000"
+    },
+	{
+      "name": "coin_800000"
+    },
+	{
+      "name": "coin_900000"
+    },
+	{
+      "name": "coin_1000000",
+      "delays": [
+        [
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "coin_diamond"
+    },
+    {
+      "name": "coin_adamantine"
+    }
+  ]
+}

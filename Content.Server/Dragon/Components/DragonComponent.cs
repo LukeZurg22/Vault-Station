@@ -3,7 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.Dragon
+namespace Content.Server.Dragon.Components
 {
     [RegisterComponent]
     public sealed partial class DragonComponent : Component

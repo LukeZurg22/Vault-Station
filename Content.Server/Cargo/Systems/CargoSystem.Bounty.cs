@@ -2,6 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Content.Server.Cargo.Components;
 using Content.Server.Labels;
+using Content.Server.Labels.Label;
 using Content.Server.NameIdentifier;
 using Content.Shared.Access.Components;
 using Content.Shared.Cargo;

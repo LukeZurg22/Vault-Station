@@ -33,6 +33,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
 using Content.Server.Labels;
+using Content.Server.Labels.Label;
 
 namespace Content.Server.Salvage
 {

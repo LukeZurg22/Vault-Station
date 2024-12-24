@@ -1,15 +1,15 @@
 using Content.Server.Administration.Logs;
-using Content.Shared.Interaction;
-using Content.Shared.Doors.Components;
-using Content.Shared.Access.Components;
 using Content.Server.Doors.Systems;
 using Content.Server.Power.EntitySystems;
+using Content.Shared.Access.Components;
 using Content.Shared.Database;
+using Content.Shared.Doors.Components;
 using Content.Shared.Examine;
-using Content.Shared.Remotes.EntitySystems;
+using Content.Shared.Interaction;
 using Content.Shared.Remotes.Components;
+using Content.Shared.Remotes.EntitySystems;
 
-namespace Content.Shared.Remotes
+namespace Content.Server.Remotes
 {
     public sealed class DoorRemoteSystem : SharedDoorRemoteSystem
     {

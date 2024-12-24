@@ -5,6 +5,7 @@ using Content.Server.Stunnable;
 using Content.Server.Temperature.Components;
 using Content.Server.Temperature.Systems;
 using Content.Server.Damage.Components;
+using Content.Server.Stunnable.Systems;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Alert;
 using Content.Shared.Atmos;

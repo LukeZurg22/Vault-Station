@@ -1041,7 +1041,7 @@
 
 - type: construction
   name: wood railing corner
-  id: RailingCorner
+  id: WoodRailingCorner
   graph: WoodRailing
   startNode: start
   targetNode: woodRailingCorner

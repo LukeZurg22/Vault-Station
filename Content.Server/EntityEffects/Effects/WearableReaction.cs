@@ -1,9 +1,8 @@
-using Content.Shared.Inventory;
-using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
+using Content.Shared.Inventory;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.EntityEffects.Effects.Effects;
+namespace Content.Server.EntityEffects.Effects;
 
 /// <summary>
 /// A reaction effect that spawns a PrototypeID in the entity's Slot, and attempts to consume the reagent if EntityEffectReagentArgs.

@@ -1,4 +1,4 @@
-using Content.Server.Labels;
+using Content.Server.Labels.Label;
 using Content.Server.Popups;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -7,7 +7,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 
-namespace Content.Server.Forensics
+namespace Content.Server.Forensics.Systems
 {
     /// <summary>
     /// Used to transfer fingerprints from entities to forensic pads.
@@ -23,12 +23,12 @@ namespace Content.Server.Forensics
         public override void Initialize()
         {
             base.Initialize();
-            SubscribeLocalEvent<ForensicPadComponent, ExaminedEvent>(OnExamined);
-            SubscribeLocalEvent<ForensicPadComponent, AfterInteractEvent>(OnAfterInteract);
-            SubscribeLocalEvent<ForensicPadComponent, ForensicPadDoAfterEvent>(OnDoAfter);
+            SubscribeLocalEvent<Components.ForensicPadComponent, ExaminedEvent>(OnExamined);
+            SubscribeLocalEvent<Components.ForensicPadComponent, AfterInteractEvent>(OnAfterInteract);
+            SubscribeLocalEvent<Components.ForensicPadComponent, ForensicPadDoAfterEvent>(OnDoAfter);
         }
 
-        private void OnExamined(EntityUid uid, ForensicPadComponent component, ExaminedEvent args)
+        private void OnExamined(EntityUid uid, Components.ForensicPadComponent component, ExaminedEvent args)
         {
             if (!args.IsInDetailsRange)
                 return;
@@ -42,12 +42,12 @@ namespace Content.Server.Forensics
             args.PushMarkup(Loc.GetString("forensic-pad-sample", ("sample", component.Sample)));
         }
 
-        private void OnAfterInteract(EntityUid uid, ForensicPadComponent component, AfterInteractEvent args)
+        private void OnAfterInteract(EntityUid uid, Components.ForensicPadComponent component, AfterInteractEvent args)
         {
             if (!args.CanReach || args.Target == null)
                 return;
 
-            if (HasComp<ForensicScannerComponent>(args.Target))
+            if (HasComp<Components.ForensicScannerComponent>(args.Target))
                 return;
 
             args.Handled = true;
@@ -64,7 +64,7 @@ namespace Content.Server.Forensics
                 return;
             }
 
-            if (TryComp<FingerprintComponent>(args.Target, out var fingerprint) && fingerprint.Fingerprint != null)
+            if (TryComp<Components.FingerprintComponent>(args.Target, out var fingerprint) && fingerprint.Fingerprint != null)
             {
                 if (args.User != args.Target)
                 {
@@ -75,11 +75,11 @@ namespace Content.Server.Forensics
                 return;
             }
 
-            if (TryComp<FiberComponent>(args.Target, out var fiber))
+            if (TryComp<Components.FiberComponent>(args.Target, out var fiber))
                 StartScan(uid, args.User, args.Target.Value, component, string.IsNullOrEmpty(fiber.FiberColor) ? Loc.GetString("forensic-fibers", ("material", fiber.FiberMaterial)) : Loc.GetString("forensic-fibers-colored", ("color", fiber.FiberColor), ("material", fiber.FiberMaterial)));
         }
 
-        private void StartScan(EntityUid used, EntityUid user, EntityUid target, ForensicPadComponent pad, string sample)
+        private void StartScan(EntityUid used, EntityUid user, EntityUid target, Components.ForensicPadComponent pad, string sample)
         {
             var ev = new ForensicPadDoAfterEvent(sample);
 
@@ -92,7 +92,7 @@ namespace Content.Server.Forensics
             _doAfterSystem.TryStartDoAfter(doAfterEventArgs);
         }
 
-        private void OnDoAfter(EntityUid uid, ForensicPadComponent padComponent, ForensicPadDoAfterEvent args)
+        private void OnDoAfter(EntityUid uid, Components.ForensicPadComponent padComponent, ForensicPadDoAfterEvent args)
         {
             if (args.Handled || args.Cancelled)
             {

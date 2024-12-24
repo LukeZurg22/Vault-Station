@@ -1,17 +1,15 @@
 using Content.Server.DeviceNetwork;
 using Content.Server.DeviceNetwork.Components;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Server.Power.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.Power;
 using Content.Shared.SurveillanceCamera;
 using Content.Shared.Verbs;
 using Robust.Server.GameObjects;
-using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.SurveillanceCamera;
+namespace Content.Server.SurveillanceCamera.Systems;
 
 public sealed class SurveillanceCameraRouterSystem : EntitySystem
 {
@@ -21,14 +19,14 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
     public override void Initialize()
     {
-        SubscribeLocalEvent<SurveillanceCameraRouterComponent, ComponentInit>(OnInitialize);
-        SubscribeLocalEvent<SurveillanceCameraRouterComponent, DeviceNetworkPacketEvent>(OnPacketReceive);
-        SubscribeLocalEvent<SurveillanceCameraRouterComponent, SurveillanceCameraSetupSetNetwork>(OnSetNetwork);
-        SubscribeLocalEvent<SurveillanceCameraRouterComponent, GetVerbsEvent<AlternativeVerb>>(AddVerbs);
-        SubscribeLocalEvent<SurveillanceCameraRouterComponent, PowerChangedEvent>(OnPowerChanged);
+        SubscribeLocalEvent<Components.SurveillanceCameraRouterComponent, ComponentInit>(OnInitialize);
+        SubscribeLocalEvent<Components.SurveillanceCameraRouterComponent, DeviceNetworkPacketEvent>(OnPacketReceive);
+        SubscribeLocalEvent<Components.SurveillanceCameraRouterComponent, SurveillanceCameraSetupSetNetwork>(OnSetNetwork);
+        SubscribeLocalEvent<Components.SurveillanceCameraRouterComponent, GetVerbsEvent<AlternativeVerb>>(AddVerbs);
+        SubscribeLocalEvent<Components.SurveillanceCameraRouterComponent, PowerChangedEvent>(OnPowerChanged);
     }
 
-    private void OnInitialize(EntityUid uid, SurveillanceCameraRouterComponent router, ComponentInit args)
+    private void OnInitialize(EntityUid uid, Components.SurveillanceCameraRouterComponent router, ComponentInit args)
     {
         if (router.SubnetFrequencyId == null ||
             !_prototypeManager.TryIndex(router.SubnetFrequencyId, out DeviceFrequencyPrototype? subnetFrequency))
@@ -40,7 +38,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         router.Active = true;
     }
 
-    private void OnPacketReceive(EntityUid uid, SurveillanceCameraRouterComponent router, DeviceNetworkPacketEvent args)
+    private void OnPacketReceive(EntityUid uid, Components.SurveillanceCameraRouterComponent router, DeviceNetworkPacketEvent args)
     {
         if (!router.Active
             || string.IsNullOrEmpty(args.SenderAddress)
@@ -86,13 +84,13 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         }
     }
 
-    private void OnPowerChanged(EntityUid uid, SurveillanceCameraRouterComponent component, ref PowerChangedEvent args)
+    private void OnPowerChanged(EntityUid uid, Components.SurveillanceCameraRouterComponent component, ref PowerChangedEvent args)
     {
         component.MonitorRoutes.Clear();
         component.Active = args.Powered;
     }
 
-    private void AddVerbs(EntityUid uid, SurveillanceCameraRouterComponent component, GetVerbsEvent<AlternativeVerb> verbs)
+    private void AddVerbs(EntityUid uid, Components.SurveillanceCameraRouterComponent component, GetVerbsEvent<AlternativeVerb> verbs)
     {
         if (!_actionBlocker.CanInteract(verbs.User, uid))
         {
@@ -110,7 +108,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         verbs.Verbs.Add(verb);
     }
 
-    private void OnSetNetwork(EntityUid uid, SurveillanceCameraRouterComponent component,
+    private void OnSetNetwork(EntityUid uid, Components.SurveillanceCameraRouterComponent component,
             SurveillanceCameraSetupSetNetwork args)
     {
         if (args.UiKey is not SurveillanceCameraSetupUiKey key
@@ -135,7 +133,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         UpdateSetupInterface(uid, component);
     }
 
-    private void OpenSetupInterface(EntityUid uid, EntityUid player, SurveillanceCameraRouterComponent? camera = null)
+    private void OpenSetupInterface(EntityUid uid, EntityUid player, Components.SurveillanceCameraRouterComponent? camera = null)
     {
         if (!Resolve(uid, ref camera))
             return;
@@ -146,7 +144,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         UpdateSetupInterface(uid, camera);
     }
 
-    private void UpdateSetupInterface(EntityUid uid, SurveillanceCameraRouterComponent? router = null, DeviceNetworkComponent? deviceNet = null)
+    private void UpdateSetupInterface(EntityUid uid, Components.SurveillanceCameraRouterComponent? router = null, DeviceNetworkComponent? deviceNet = null)
     {
         if (!Resolve(uid, ref router, ref deviceNet))
         {
@@ -165,7 +163,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
     }
 
     private void SendHeartbeat(EntityUid uid, string origin, string destination,
-        SurveillanceCameraRouterComponent? router = null)
+        Components.SurveillanceCameraRouterComponent? router = null)
     {
         if (!Resolve(uid, ref router))
         {
@@ -181,7 +179,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         _deviceNetworkSystem.QueuePacket(uid, destination, payload, router.SubnetFrequency);
     }
 
-    private void SubnetPingResponse(EntityUid uid, string origin, SurveillanceCameraRouterComponent? router = null)
+    private void SubnetPingResponse(EntityUid uid, string origin, Components.SurveillanceCameraRouterComponent? router = null)
     {
         if (!Resolve(uid, ref router) || router.SubnetFrequencyId == null)
         {
@@ -197,7 +195,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         _deviceNetworkSystem.QueuePacket(uid, origin, payload);
     }
 
-    private void ConnectCamera(EntityUid uid, string origin, string address, SurveillanceCameraRouterComponent? router = null)
+    private void ConnectCamera(EntityUid uid, string origin, string address, Components.SurveillanceCameraRouterComponent? router = null)
     {
         if (!Resolve(uid, ref router))
         {
@@ -214,7 +212,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
     }
 
     // Adds a monitor to the set of routes.
-    private void AddMonitorToRoute(EntityUid uid, string address, SurveillanceCameraRouterComponent? router = null)
+    private void AddMonitorToRoute(EntityUid uid, string address, Components.SurveillanceCameraRouterComponent? router = null)
     {
         if (!Resolve(uid, ref router))
         {
@@ -224,7 +222,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
         router.MonitorRoutes.Add(address);
     }
 
-    private void RemoveMonitorFromRoute(EntityUid uid, string address, SurveillanceCameraRouterComponent? router = null)
+    private void RemoveMonitorFromRoute(EntityUid uid, string address, Components.SurveillanceCameraRouterComponent? router = null)
     {
         if (!Resolve(uid, ref router))
         {
@@ -235,7 +233,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
     }
 
     // Pings a subnet to get all camera information.
-    private void PingSubnet(EntityUid uid, SurveillanceCameraRouterComponent? router = null)
+    private void PingSubnet(EntityUid uid, Components.SurveillanceCameraRouterComponent? router = null)
     {
         if (!Resolve(uid, ref router))
         {
@@ -252,7 +250,7 @@ public sealed class SurveillanceCameraRouterSystem : EntitySystem
     }
 
     // Sends camera information to all monitors currently interested.
-    private void SendCameraInfo(EntityUid uid, NetworkPayload payload, SurveillanceCameraRouterComponent? router = null)
+    private void SendCameraInfo(EntityUid uid, NetworkPayload payload, Components.SurveillanceCameraRouterComponent? router = null)
     {
         if (!Resolve(uid, ref router))
         {

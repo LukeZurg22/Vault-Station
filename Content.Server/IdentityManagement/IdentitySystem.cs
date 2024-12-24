@@ -2,6 +2,7 @@ using Content.Server.Access.Systems;
 using Content.Server.Administration.Logs;
 using Content.Server.CriminalRecords.Systems;
 using Content.Server.Humanoid;
+using Content.Server.Humanoid.Systems;
 using Content.Shared.Clothing;
 using Content.Shared.Database;
 using Content.Shared.Hands;

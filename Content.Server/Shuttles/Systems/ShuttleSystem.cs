@@ -6,6 +6,7 @@ using Content.Server.Procedural;
 using Content.Server.Shuttles.Components;
 using Content.Server.Station.Systems;
 using Content.Server.Stunnable;
+using Content.Server.Stunnable.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Salvage;

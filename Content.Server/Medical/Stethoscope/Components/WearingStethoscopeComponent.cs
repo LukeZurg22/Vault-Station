@@ -1,6 +1,6 @@
 using System.Threading;
 
-namespace Content.Server.Medical.Components
+namespace Content.Server.Medical.Stethoscope.Components
 {
     /// <summary>
     /// Used to let doctors use the stethoscope on people.

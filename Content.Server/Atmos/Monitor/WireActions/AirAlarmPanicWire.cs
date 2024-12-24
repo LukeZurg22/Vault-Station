@@ -5,7 +5,7 @@ using Content.Server.Wires;
 using Content.Shared.Atmos.Monitor.Components;
 using Content.Shared.Wires;
 
-namespace Content.Server.Atmos.Monitor;
+namespace Content.Server.Atmos.Monitor.WireActions;
 
 public sealed partial class AirAlarmPanicWire : ComponentWireAction<AirAlarmComponent>
 {

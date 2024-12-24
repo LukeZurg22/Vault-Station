@@ -33,16 +33,16 @@ public sealed class DragonRiftSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeLocalEvent<DragonRiftComponent, ExaminedEvent>(OnExamined);
-        SubscribeLocalEvent<DragonRiftComponent, AnchorStateChangedEvent>(OnAnchorChange);
-        SubscribeLocalEvent<DragonRiftComponent, ComponentShutdown>(OnShutdown);
+        SubscribeLocalEvent<Components.DragonRiftComponent, ExaminedEvent>(OnExamined);
+        SubscribeLocalEvent<Components.DragonRiftComponent, AnchorStateChangedEvent>(OnAnchorChange);
+        SubscribeLocalEvent<Components.DragonRiftComponent, ComponentShutdown>(OnShutdown);
     }
 
     public override void Update(float frameTime)
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<DragonRiftComponent, TransformComponent>();
+        var query = EntityQueryEnumerator<Components.DragonRiftComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var comp, out var xform))
         {
             if (comp.State != DragonRiftState.Finished && comp.Accumulator >= comp.MaxAccumulator)
@@ -96,12 +96,12 @@ public sealed class DragonRiftSystem : EntitySystem
         }
     }
 
-    private void OnExamined(EntityUid uid, DragonRiftComponent component, ExaminedEvent args)
+    private void OnExamined(EntityUid uid, Components.DragonRiftComponent component, ExaminedEvent args)
     {
         args.PushMarkup(Loc.GetString("carp-rift-examine", ("percentage", MathF.Round(component.Accumulator / component.MaxAccumulator * 100))));
     }
 
-    private void OnAnchorChange(EntityUid uid, DragonRiftComponent component, ref AnchorStateChangedEvent args)
+    private void OnAnchorChange(EntityUid uid, Components.DragonRiftComponent component, ref AnchorStateChangedEvent args)
     {
         if (!args.Anchored && component.State == DragonRiftState.Charging)
         {
@@ -109,9 +109,9 @@ public sealed class DragonRiftSystem : EntitySystem
         }
     }
 
-    private void OnShutdown(EntityUid uid, DragonRiftComponent comp, ComponentShutdown args)
+    private void OnShutdown(EntityUid uid, Components.DragonRiftComponent comp, ComponentShutdown args)
     {
-        if (!TryComp<DragonComponent>(comp.Dragon, out var dragon) || dragon.Weakened)
+        if (!TryComp<Components.DragonComponent>(comp.Dragon, out var dragon) || dragon.Weakened)
             return;
 
         _dragon.RiftDestroyed(comp.Dragon.Value, dragon);

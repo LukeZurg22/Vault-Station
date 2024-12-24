@@ -1,4 +1,4 @@
-namespace Content.Server.SurveillanceCamera;
+namespace Content.Server.SurveillanceCamera.Components;
 
 /// <summary>
 ///     This allows surveillance cameras to speak, if the camera in question

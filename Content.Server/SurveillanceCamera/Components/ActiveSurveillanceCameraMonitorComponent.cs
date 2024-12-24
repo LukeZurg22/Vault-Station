@@ -1,4 +1,4 @@
-namespace Content.Server.SurveillanceCamera;
+namespace Content.Server.SurveillanceCamera.Components;
 
 // Dummy component for active surveillance monitors.
 [RegisterComponent]

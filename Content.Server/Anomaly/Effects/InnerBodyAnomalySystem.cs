@@ -4,6 +4,7 @@ using Content.Server.Chat.Managers;
 using Content.Server.Jittering;
 using Content.Server.Mind;
 using Content.Server.Stunnable;
+using Content.Server.Stunnable.Systems;
 using Content.Shared.Actions;
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;

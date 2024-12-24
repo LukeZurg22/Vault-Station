@@ -35,6 +35,10 @@ using Robust.Shared.Player;
 using Content.Shared.Coordinates;
 using Robust.Shared.Utility;
 using Robust.Shared.Timing;
+using AnchorOnTriggerComponent = Content.Server.Explosion.Components.OnTrigger.AnchorOnTriggerComponent;
+using DeleteOnTriggerComponent = Content.Server.Explosion.Components.OnTrigger.DeleteOnTriggerComponent;
+using GibOnTriggerComponent = Content.Server.Explosion.Components.OnTrigger.GibOnTriggerComponent;
+using SoundOnTriggerComponent = Content.Server.Explosion.Components.OnTrigger.SoundOnTriggerComponent;
 
 namespace Content.Server.Explosion.EntitySystems
 {

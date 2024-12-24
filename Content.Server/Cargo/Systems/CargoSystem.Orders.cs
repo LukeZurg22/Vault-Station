@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Cargo.Components;
-using Content.Server.Labels.Components;
 using Content.Server.Station.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
@@ -15,6 +14,7 @@ using Content.Shared.Paper;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using PaperLabelComponent = Content.Server.Labels.Label.Components.PaperLabelComponent;
 
 namespace Content.Server.Cargo.Systems
 {

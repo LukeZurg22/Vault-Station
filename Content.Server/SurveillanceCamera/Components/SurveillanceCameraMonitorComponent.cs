@@ -1,4 +1,6 @@
-namespace Content.Server.SurveillanceCamera;
+using Content.Server.SurveillanceCamera.Systems;
+
+namespace Content.Server.SurveillanceCamera.Components;
 
 [RegisterComponent]
 [Access(typeof(SurveillanceCameraMonitorSystem))]

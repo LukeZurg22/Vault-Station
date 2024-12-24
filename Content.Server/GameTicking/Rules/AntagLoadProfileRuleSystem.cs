@@ -1,6 +1,7 @@
 using Content.Server.Antag;
 using Content.Server.GameTicking.Rules.Components;
 using Content.Server.Humanoid;
+using Content.Server.Humanoid.Systems;
 using Content.Server.Preferences.Managers;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Prototypes;
