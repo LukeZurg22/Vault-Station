@@ -1,0 +1,46 @@
+{
+	"version": 1,
+	"license": "CC-BY-SA-3.0",
+  "copyright": "Made by LukeZurg22",
+	"size": {
+		"x": 32,
+		"y": 32
+	},
+	"states": [
+		{
+			"name": "bridge_0",
+			"directions": 4
+		},
+		{
+			"name": "bridge_1",
+			"directions": 4
+		},
+		{
+			"name": "bridge_2",
+			"directions": 4
+		},
+		{
+			"name": "bridge_3",
+			"directions": 4
+		},
+		{
+			"name": "bridge_4",
+			"directions": 4
+		},
+		{
+			"name": "bridge_5",
+			"directions": 4
+		},
+		{
+			"name": "bridge_6",
+			"directions": 4
+		},
+		{
+			"name": "bridge_7",
+			"directions": 4
+		},
+		{
+			"name": "bridge_preview"
+		}
+	]
+}

@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: Bridge
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: Bridge
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps:
+      - material: WoodPlank
+        amount: 2
+
+  - node: Bridge
+    entity: Bridge
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 2
+      - !type:DeleteEntity {}
+      steps:
+      - tool: Cutting

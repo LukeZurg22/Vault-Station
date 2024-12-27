@@ -1,0 +1,17 @@
+- type: construction
+  name: bridge
+  id: Bridge
+  graph: Bridge
+  startNode: start
+  targetNode: Bridge
+  category: construction-category-structures
+  description: Just like a log from a dead tree, but better!
+  conditions:
+  - !type:TileNotBlocked
+    failIfSpace: false
+  icon:
+    sprite: _VS/Structures/bridge.rsi
+    state: bridge_preview
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
