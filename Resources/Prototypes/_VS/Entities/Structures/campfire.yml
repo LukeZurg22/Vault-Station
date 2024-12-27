@@ -10,7 +10,7 @@
     anchored: true
   - type: Sprite
     noRot: true
-    sprite: Structures/Decoration/campfire.rsi
+    sprite: _VS/Structures/campfire.rsi
     layers:
       - state: campfire
   - type: Damageable
@@ -72,7 +72,7 @@
   - type: PointLight
     radius: 5
     energy: 3
-    color: "#FF5601" 
+    color: "#FF5601"
   - type: AmbientSound
     volume: -5
     range: 5
@@ -101,7 +101,7 @@
   components:
   - type: Sprite
     drawdepth: SmallObjects
-    sprite: Structures/Decoration/campfire.rsi
+    sprite: _VS/Structures/campfire.rsi
     layers:
     - state: cooking_campfire
       visible: true
@@ -115,7 +115,7 @@
     positionOffset: 0, 0.25
   - type: FireHeater
     heatPerSecond: 240
-  
+
 - type: entity
   id: DeadCampfire
   parent: Campfire
@@ -129,4 +129,4 @@
   - type: PointLight
     radius: 1.1
     energy: 2
-    color: "#FF5601" 
+    color: "#FF5601"
