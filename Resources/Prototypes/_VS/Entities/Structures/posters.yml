@@ -1,0 +1,45 @@
+- type: entity
+  parent: PosterBase
+  id: PosterBaseVS
+  abstract: true
+  components:
+  - type: Sprite
+    drawdepth: WallMountedItems
+    sprite: _VS/Structures/posters.rsi
+    snapCardinals: true
+
+- type: entity
+  parent: PosterBaseVS
+  id: PosterChaosStar
+  name: "Star of Chaos"
+  description: "But which one?"
+  components:
+    - type: Sprite
+      state: chaos_star
+
+- type: entity
+  parent: PosterBaseVS
+  id: PosterUnionJ
+  name: "Union J."
+  description: "It seems they're hiring!"
+  components:
+    - type: Sprite
+      state: union_j
+
+- type: entity
+  parent: PosterBaseVS
+  id: PosterUnionFounder
+  name: "Founder of Union J."
+  description: "The shiny plaque talks about some guy named John."
+  components:
+    - type: Sprite
+      state: union_founder
+
+- type: entity
+  parent: PosterBaseVS
+  id: PosterRogueSector
+  name: "Rogue Sector"
+  description: "Yeah! Profits!"
+  components:
+    - type: Sprite
+      state: rogue_sector

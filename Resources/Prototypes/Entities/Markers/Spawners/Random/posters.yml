@@ -13,6 +13,7 @@
     prototypes:
       - RandomPosterContraband
       - RandomPosterLegit
+      - RandomVSPosterAny
     chance: 0.95
     rarePrototypes:
       - PosterBroken
@@ -92,7 +93,6 @@
       - PosterContrabandInterdyne
       - PosterContrabandWaffleCorp
       - PosterContrabandMissingSpacepen
-      - PosterContrabandUnionJ
     chance: 1
 
 - type: entity

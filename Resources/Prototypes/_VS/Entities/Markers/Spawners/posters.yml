@@ -1,0 +1,56 @@
+- type: entity
+  parent: MarkerBase
+  id: RandomVSPosterAny
+  name: random vault poster
+  suffix: any
+  components:
+  - type: Sprite
+    layers:
+      - state: red
+      - sprite: _VS/Structures/posters.rsi
+        state: random_anything
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+      - RandomPosterRogue
+      - RandomPosterChaos
+    chance: 0.95
+    rarePrototypes:
+      - PosterBroken
+    rareChance: 0.05
+    
+- type: entity
+  parent: MarkerBase
+  id: RandomPosterRogue
+  name: random vault poster
+  suffix: rogue
+  components:
+  - type: Sprite
+    layers:
+    - state: blue
+    - sprite: _VS/Structures/posters.rsi
+      state: random_legit
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - PosterUnionJ
+    - PosterUnionFounder
+    - PosterRogueSector
+    chance: 1
+
+- type: entity
+  parent: MarkerBase
+  id: RandomPosterChaos
+  name: random vault poster
+  suffix: contra
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _VS/Structures/posters.rsi
+      state: random_contraband
+  - type: RandomSpawner
+    offset: 0
+    prototypes:
+    - PosterChaosStar
+    chance: 1
