@@ -1,56 +1,64 @@
-# - type: entity
-  # id: BaseLadder
-  # abstract: true
-  # placement:
-    # mode: SnapgridCenter
-  # components:
-  # - type: Sprite
-    # sprite: _MS/Structures/Stairs.rsi
-    # noRot: true
-    # netsync: false
-  # - type: Transform
-    # anchored: true
-  # - type: Clickable
-  # - type: Physics
-    # bodyType: Static
-  # - type: Tag
-    # tags:
-      # - Structure
-  # - type: InteractionOutline
-  # - type: Warper
+# Absolutely-Necessary-Abstract-ProtoType(TM) [DO 
+- type: entity
+  id: BaseLadder
+  abstract: true
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Sprite
+    sprite: _MS/Structures/Stairs.rsi
+    noRot: true
+    netsync: false
+  - type: Transform
+    anchored: true
+  - type: Clickable
+  - type: Physics
+    bodyType: Static
+  - type: Tag
+    tags:
+      - Structure
+  - type: InteractionOutline
+  - type: WarpPoint     # For Ghosts to Teleport To The Ladder
 
-# - type: entity
-  # parent: BaseLadder
-  # id: LadderTop
-  # name: ladder
-  # suffix: top
-  # description: They go down.
-  # components:
-  # - type: Sprite
-    # offset: 0, 0.5
-    # layers:
-      # - state: stair_down
-      # - state: warningtape_down
-        # shader: unshaded
+- type: entity
+  parent: BaseLadder
+  id: LadderTop
+  name: entrance
+  suffix: top
+  description: It goes down.
+  components:
+  - type: Sprite
+    offset: 0, 0.5
+    layers:
+      - state: stair_down
+      - state: warningtape_down
+        shader: unshaded
+  - type: Warper        # For Teleporting Between Layers
 
-# - type: entity
-  # parent: BaseLadder
-  # id: LadderBottom
-  # name: ladder
-  # suffix: bottom
-  # description: They go up.
-  # components:
-  # - type: Sprite
-    # offset: 0, 0.5
-    # layers:
-      # - state: stair_up
-      # - state: warningtape_up
-        # shader: unshaded
+- type: entity
+  parent: BaseLadder
+  id: LadderBottom
+  name: entrance
+  suffix: bottom
+  description: It goes up.
+  components:
+  - type: Sprite
+    offset: 0, 0.5
+    layers:
+      - state: stair_up
+      - state: warningtape_up
+        shader: unshaded
+  - type: Warper        # For Teleporting Between Layers
+    goesUp: true     # Required as a toggle.
 
-# - type: entity
-  # id: LadderDungeon
-  # parent: LadderTop
-  # suffix: dungeon
-  # components:
-  # - type: Warper
-    # dungeon: true
+- type: entity
+  id: LadderDungeon     # This is the topmost Base-Camp entryway.
+  description: Who knows what the depths of the Vault has in store today?
+  parent: LadderTop
+  suffix: dungeon
+  components:
+  - type: Warper        # For Teleporting Between Layers
+    dungeon: true       # So default generates a fresh dungeon below.
+  - type: WarpPoint
+    id: dlvl0down
+    location: Vault Entrance

@@ -1,0 +1,102 @@
+# Complete List
+  # - Dragon
+  # - Mouse
+  # - Passive
+  # - SimpleHostile
+  # - SimpleNeutral
+  # - Xeno
+  # - Zombie
+  # - RogueSector
+  # - Teethling
+  # - UnionJ
+  # - ChaosCultistHuemac
+  # - ChaosCultistOldGod
+  
+## SS14 Factions List
+  # - Dragon
+  # - Mouse
+  # - Passive
+  # - SimpleHostile
+  # - SimpleNeutral
+  # - Xeno
+  # - Zombie
+  
+## Vault Station Faction
+  # - RogueSector
+  # - Teethling
+  # - UnionJ
+  # - ChaosCultistHuemac
+  #- ChaosCultistOldGod
+
+- type: npcFaction
+  id: AllHostileVS
+  hostile:
+  - Dragon
+  - Mouse
+  - Passive
+  - SimpleHostile
+  - SimpleNeutral
+  - Xeno
+  - Zombie
+  - RogueSector
+  - Teethling
+  - UnionJ
+  
+- type: npcFaction
+  id: RogueSector
+  hostile:
+  - Dragon
+  - SimpleHostile
+  - Xeno
+  - Zombie
+  - AllHostile
+
+- type: npcFaction
+  id: Teethling
+  hostile:
+  - Dragon
+  - SimpleHostile
+  - Xeno
+  - Zombie
+  - UnionJ
+  - AllHostile
+  
+- type: npcFaction
+  id: UnionJ
+  hostile:
+  - Dragon
+  - SimpleHostile
+  - Xeno
+  - Zombie
+  - Teethling
+  - AllHostile
+  
+- type: npcFaction
+  id: ChaosCultistHuemac
+  hostile:
+  - Dragon
+  - Mouse
+  - Passive
+  - SimpleHostile
+  - SimpleNeutral
+  - Xeno
+  - Zombie
+  - RogueSector
+  - Teethling
+  - UnionJ
+  - ChaosCultistOldGod
+  
+- type: npcFaction
+  id: ChaosCultistOldGod
+  hostile:
+  - Dragon
+  - Mouse
+  - Passive
+  - SimpleHostile
+  - SimpleNeutral
+  - Xeno
+  - Zombie
+  - RogueSector
+  - Teethling
+  - UnionJ
+  - ChaosCultistHuemac

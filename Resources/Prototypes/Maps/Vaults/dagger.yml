@@ -1,6 +1,6 @@
 - type: gameMap
   id: Dagger
-  mapName: 'Dagger Vault'
+  mapName: 'Camp Dagger'
   mapPath: /Maps/dagger.yml
   minPlayers: 3
   stations:

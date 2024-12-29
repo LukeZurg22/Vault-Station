@@ -1,12 +1,12 @@
 namespace Content.Server.Warps
 {
     /// <summary>
-    /// Allows ghosts etc to warp to this entity by name.
+    /// Allows ghosts etc. to warp to this entity by name.
     /// </summary>
     [RegisterComponent]
     public sealed partial class WarpPointComponent : Component
     {
-        [ViewVariables(VVAccess.ReadWrite), DataField]
+        [ViewVariables(VVAccess.ReadWrite), DataField("location")]
         public string? Location;
 
         /// <summary>

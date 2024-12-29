@@ -1,10 +1,16 @@
-# Dungeon Rooms
+# NPC Tags
+- type: Tag
+  id: Boss
+
+# Dungeon Room Size Markers
 
 - type: Tag
   id: DungeonRooms4x4
 
 - type: Tag
   id: DungeonRooms5x5
+
+# Dungeon Room Types
 
 - type: Tag
   id: DungeonRoomRandom
@@ -20,5 +26,3 @@
 
 - type: Tag
   id: DungeonRoomCultist
-
-# End of Dungeon Rooms

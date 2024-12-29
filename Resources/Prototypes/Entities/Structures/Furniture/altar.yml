@@ -7,6 +7,7 @@
   components:
   - type: Anchorable
   - type: Transform
+  - type: InteractionOutline
   - type: Prayable
   - type: Damageable
     damageContainer: StructuralInorganic
