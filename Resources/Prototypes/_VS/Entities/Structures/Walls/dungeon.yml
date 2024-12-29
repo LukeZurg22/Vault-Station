@@ -1,6 +1,6 @@
 #Mountain Rock
 - type: entity
-  id: MountainRock
+  id: MountainStone
   parent: BaseWall
   name: mountain rock
   description: Extremely ultra-dense rock.
@@ -12,10 +12,10 @@
     mode: NoSprite
   - type: SmoothEdge
   - type: Icon
-    sprite: Structures/Walls/rock.rsi
+    sprite: _VS/Structures/Walls/mountain.rsi
     state: mountain
   - type: Sprite
-    sprite: Structures/Walls/rock.rsi
+    sprite: _VS/Structures/Walls/mountain.rsi
     layers:
       - state: mountain
       - map: [ "enum.EdgeLayer.South" ]
@@ -37,12 +37,10 @@
     tags:
       - Wall
   - type: Sprite
-    sprite: Structures/Walls/dungeonbrick.rsi
+    sprite: _VS/Structures/Walls/dungeonbrick.rsi
   - type: Icon
-    sprite: Structures/Walls/dungeonbrick.rsi
+    sprite: _VS/Structures/Walls/dungeonbrick.rsi
     state: full
   - type: IconSmooth
     key: dungeonbricks
     base: dungeonbrick
-
-#Wooden Railing

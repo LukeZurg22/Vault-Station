@@ -1,0 +1,68 @@
+# Wooden Railing
+- type: construction
+  name: wood railing
+  id: WoodRailing
+  graph: WoodRailing
+  startNode: start
+  targetNode: woodRailing
+  category: construction-category-structures
+  description: Wooden railing.
+  icon:
+    sprite: _VS/Structures/Walls/wood_railing.rsi
+    state: side
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: wood railing corner
+  id: WoodRailingCorner
+  graph: WoodRailing
+  startNode: start
+  targetNode: woodRailingCorner
+  category: construction-category-structures
+  description: Wooden railing.
+  icon:
+    sprite: _VS/Structures/Walls/wood_railing.rsi
+    state: corner
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: wood railing corner small
+  id: WoodRailingCornerSmall
+  graph: WoodRailing
+  startNode: start
+  targetNode: woodRailingCornerSmall
+  category: construction-category-structures
+  description: Wooden railing.
+  icon:
+    sprite: _VS/Structures/Walls/wood_railing.rsi
+    state: corner_small
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
+
+- type: construction
+  name: wood railing round
+  id: WoodRailingRound
+  graph: WoodRailing
+  startNode: start
+  targetNode: woodRailingRound
+  category: construction-category-structures
+  description: Wooden railing.
+  icon:
+    sprite: _VS/Structures/Walls/wood_railing.rsi
+    state: round
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

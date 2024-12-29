@@ -214,21 +214,6 @@
         },
         {
             "name": "rock_andesite_west"
-        },
-        {
-            "name": "mountain"
-        },
-        {
-            "name": "mountain_wall_south"
-        },
-        {
-            "name": "mountain_wall_east"
-        },
-        {
-            "name": "mountain_wall_north"
-        },
-        {
-            "name": "mountain_wall_west"
         }
     ]
 }

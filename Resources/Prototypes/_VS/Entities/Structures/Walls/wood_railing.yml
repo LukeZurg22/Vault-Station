@@ -7,9 +7,9 @@
   components:
   - type: Sprite
     drawdepth: SmallObjects
-    sprite: Structures/Walls/wood_railing.rsi
+    sprite: _VS/Structures/Walls/wood_railing.rsi
   - type: Icon
-    sprite: Structures/Walls/wood_railing.rsi
+    sprite: _VS/Structures/Walls/wood_railing.rsi
   - type: Physics
     bodyType: Static
   - type: InteractionOutline
@@ -24,7 +24,7 @@
     cost: 2
     delay: 2
     fx: EffectRCDDeconstruct2
-    
+
 - type: entity
   parent: BaseWoodRailing
   id: WoodRailing
