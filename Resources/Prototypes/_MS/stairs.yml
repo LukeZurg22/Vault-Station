@@ -1,0 +1,56 @@
+# - type: entity
+  # id: BaseLadder
+  # abstract: true
+  # placement:
+    # mode: SnapgridCenter
+  # components:
+  # - type: Sprite
+    # sprite: _MS/Structures/Stairs.rsi
+    # noRot: true
+    # netsync: false
+  # - type: Transform
+    # anchored: true
+  # - type: Clickable
+  # - type: Physics
+    # bodyType: Static
+  # - type: Tag
+    # tags:
+      # - Structure
+  # - type: InteractionOutline
+  # - type: Warper
+
+# - type: entity
+  # parent: BaseLadder
+  # id: LadderTop
+  # name: ladder
+  # suffix: top
+  # description: They go down.
+  # components:
+  # - type: Sprite
+    # offset: 0, 0.5
+    # layers:
+      # - state: stair_down
+      # - state: warningtape_down
+        # shader: unshaded
+
+# - type: entity
+  # parent: BaseLadder
+  # id: LadderBottom
+  # name: ladder
+  # suffix: bottom
+  # description: They go up.
+  # components:
+  # - type: Sprite
+    # offset: 0, 0.5
+    # layers:
+      # - state: stair_up
+      # - state: warningtape_up
+        # shader: unshaded
+
+# - type: entity
+  # id: LadderDungeon
+  # parent: LadderTop
+  # suffix: dungeon
+  # components:
+  # - type: Warper
+    # dungeon: true
