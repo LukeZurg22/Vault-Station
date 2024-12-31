@@ -2,6 +2,10 @@
 - type: Tag
   id: Boss
 
+# Item Tags
+- type: Tag
+  id: DungeonUplink
+
 # Dungeon Room Size Markers
 
 - type: Tag

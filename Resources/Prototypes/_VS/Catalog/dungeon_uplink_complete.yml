@@ -1,0 +1,549 @@
+## DUNGEON UPLINK
+- type: entity
+  parent: [ BaseItem, StorePresetDungeonUplink ]
+  id: BaseDungeonUplink
+  name: dungeoneering uplink
+  description: An essential Dungeoneers' tool.
+  suffix: Empty
+  noSpawn: true
+  components:
+  - type: Sprite
+    sprite: _NF/Objects/Devices/pirate_uplink.rsi
+    layers:
+    - state: icon
+      scale: 0.7, 0.7
+    - state: icon-overlay
+      scale: 0.7, 0.7
+      shader: unshaded
+  - type: Item
+    sprite: _NF/Objects/Devices/pirate_uplink.rsi
+    heldPrefix: icon
+  - type: UserInterface
+    interfaces:
+      enum.StoreUiKey.Key:
+        type: StoreBoundUserInterface
+  - type: ActivatableUI
+    key: enum.StoreUiKey.Key
+  - type: Tag
+    tags:
+    - DungeonUplink
+
+## STORE PRESET
+- type: entity
+  id: StorePresetDungeonUplink
+  abstract: true
+  components:
+  - type: Store
+    name: store-preset-name-dungeon-uplink
+    categories:
+    - UplinkDungeonMedicines
+    - UplinkDungeonMiscellaneous
+    currencyWhitelist:
+    - CoinPiece
+    balance:
+      CoinPiece: 0
+
+## STORE CATEGORIES
+- type: storeCategory
+  id: UplinkDungeonMedicines
+  name: store-category-medicine
+  
+- type: storeCategory
+  id: UplinkDungeonMiscellaneous
+  name: store-category-miscellaneous
+
+### ITEMS IN CATALOGUES
+## MEDICINES         
+- type: listing
+  id: UplinkDexalinPlusChemistryBottle
+  name: uplink-dungeon-epi-name
+  description: uplink-dungeon-epi-desc
+  productEntity: EpinephrineChemistryBottle
+  icon: { sprite: /Textures/Objects/Specific/Chemistry/bottle.rsi, state: bottle }
+  cost:
+    CoinPiece: 150
+  categories:
+    - UplinkDungeonMedicines
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - DungeonUplink
+
+## MISCELLANEOUS
+- type: listing
+  id: UplinkDungeonFloodlight
+  name:  uplink-dungeon-floodlight-name
+  description: uplink-dungeon-floodlight-desc
+  productEntity: Floodlight
+  icon: { sprite: /Textures/Objects/Misc/Lights/lights.rsi, state: floodlight }
+  cost:
+    CoinPiece: 50
+  categories:
+    - UplinkDungeonMiscellaneous
+  conditions:
+    - !type:StoreWhitelistCondition
+      whitelist:
+        tags:
+          - DungeonUplink
+
+# # Guns
+# - type: listing
+  # id: UplinkPistolViper
+  # name: uplink-pistol-viper-name
+  # description: uplink-pistol-viper-desc
+  # productEntity: WeaponPistolViper
+  # discountCategory: rareDiscounts
+  # discountDownTo:
+    # Telecrystal: 2
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - UplinkWeaponry
+
+# # Explosives
+
+# - type: listing
+  # id: UplinkExplosiveGrenade
+  # name: uplink-explosive-grenade-name
+  # description: uplink-explosive-grenade-desc
+  # productEntity: ExGrenade
+  # discountCategory: usualDiscounts
+  # discountDownTo:
+    # Telecrystal: 2
+  # cost:
+    # Telecrystal: 4
+  # categories:
+  # - UplinkExplosives
+
+# # Ammo
+
+# - type: listing
+  # id: UplinkPistol9mmMagazine
+  # name: uplink-pistol-magazine-name
+  # description: uplink-pistol-magazine-desc
+  # icon: { sprite: /Textures/Objects/Weapons/Guns/Ammunition/Magazine/Pistol/pistol_mag.rsi, state: red-icon }
+  # productEntity: MagazinePistol
+  # cost:
+    # Telecrystal: 1
+  # categories:
+  # - UplinkAmmo
+
+# #Chemicals
+# - type: listing
+  # id: UplinkHypopen
+  # name: uplink-hypopen-name
+  # description: uplink-hypopen-desc
+  # icon: { sprite: /Textures/Objects/Misc/pens.rsi, state: pen }
+  # productEntity: HypopenBox
+  # discountCategory: rareDiscounts
+  # discountDownTo:
+    # Telecrystal: 4
+  # cost:
+    # Telecrystal: 6
+  # categories:
+  # - UplinkChemicals
+  # - DungeonUplinkMeds
+
+# # Deception
+
+# - type: listing
+  # id: UplinkAgentIDCard
+  # name: uplink-agent-id-card-name
+  # description: uplink-agent-id-card-desc
+  # productEntity: AgentIDCard
+  # discountCategory: veryRareDiscounts
+  # discountDownTo:
+    # Telecrystal: 1
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - UplinkDeception
+
+# # Disruption
+# - type: listing
+  # id: UplinkEmag
+  # name: uplink-emag-name
+  # description: uplink-emag-desc
+  # productEntity: Emag
+  # discountCategory: veryRareDiscounts
+  # discountDownTo:
+    # Telecrystal: 5
+  # cost:
+    # Telecrystal: 8
+  # categories:
+  # - UplinkDisruption
+
+# # Allies
+# - type: listing
+  # id: UplinkHoloparaKit
+  # name: uplink-holopara-kit-name
+  # description: uplink-holopara-kit-desc
+  # icon: { sprite: /Textures/Objects/Misc/guardian_info.rsi, state: icon }
+  # productEntity: BoxHoloparasite
+  # discountCategory: usualDiscounts
+  # discountDownTo:
+    # Telecrystal: 8
+  # cost:
+    # Telecrystal: 14
+  # categories:
+  # - UplinkAllies
+  # conditions:
+  # - !type:StoreWhitelistCondition
+    # blacklist:
+      # tags:
+      # - NukeOpsUplink
+
+# # Implants
+# - type: listing
+  # id: UplinkStorageImplanter
+  # name: uplink-storage-implanter-name
+  # description: uplink-storage-implanter-desc
+  # icon: { sprite: /Textures/Clothing/Back/Backpacks/backpack.rsi, state: icon }
+  # productEntity: StorageImplanter
+  # discountCategory: rareDiscounts
+  # discountDownTo:
+    # Telecrystal: 4
+  # cost:
+    # Telecrystal: 8
+  # categories:
+    # - UplinkImplants
+  # conditions:
+    # - !type:StoreWhitelistCondition
+      # blacklist:
+        # tags:
+          # - NukeOpsUplink
+
+
+# # Wearables
+# - type: listing
+  # id: UplinkJetpack
+  # name: uplink-black-jetpack-name
+  # description: uplink-black-jetpack-desc
+  # productEntity: JetpackBlackFilled
+  # discountCategory: veryRareDiscounts
+  # discountDownTo:
+    # Telecrystal: 1
+  # cost:
+    # Telecrystal: 2
+  # categories:
+  # - UplinkWearables
+
+
+ # # Pointless
+# - type: listing
+  # id: UplinkBarberScissors
+  # name: uplink-barber-scissors-name
+  # description: uplink-barber-scissors-desc
+  # productEntity: BarberScissors
+  # cost:
+    # Telecrystal: 1
+  # categories:
+  # - UplinkPointless
+
+
+# - type: listing
+  # id: UplinkGauze
+  # name: gauze
+  # description: Fix yourself up!
+  # productEntity: Gauze1
+  # cost:
+    # Telecrystal: 1
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkBrutepack
+  # name: bruise pack
+  # description: The best gel packs and adhesive bandages around.
+  # productEntity: Brutepack1
+  # cost:
+    # Telecrystal: 1
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkBloodpack
+  # name: bloodpack
+  # description: You really never imagined you would need so many spaceman to donate blood just so you can do some dungeon crawling, right?
+  # productEntity: Bloodpack
+  # cost:
+    # Telecrystal: 1
+  # categories:
+  # - DungeonUplinkMeds
+
+
+# - type: listing
+  # id: UplinkDrill
+  # name: surgical drill
+  # description: Fix you up good, just make sure you don't lose your head.
+  # productEntity: Drill
+  # cost:
+    # Telecrystal: 2
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkCrateMedicalSurgery
+  # name: medical surgery crate
+  # description: Everything you might need to operate for a fair price.
+  # productEntity: CrateMedicalSurgery
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkDefibrillator
+  # name: defibrillator
+  # description: Be careful, the patient was already shocked.
+  # productEntity: Defibrillator
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkMedkitBurnFilled
+  # name: burn medkit
+  # description: Comes with the excellent treatment for serious burns silver sulfadiazine ointment that also prevents burn wounds from infection.
+  # productEntity: MedkitBurnFilled
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkMedkitBruteFilled
+  # name: brute medkit
+  # description: You never thought bandaids were all you really need to bring your old friend back to life, did you?
+  # productEntity: MedkitBruteFilled
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkMedkitToxinFilled
+  # name: toxin medkit
+  # description: "I know what you're thinking: Damn ticks."
+  # productEntity: MedkitToxinFilled
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkMedkitRadiationFilled
+  # name: radiation medkit
+  # description: How the hell did you managed to get radiation burns? Well I hope that's not too expensive for you.
+  # productEntity: MedkitRadiationFilled
+  # cost:
+    # Telecrystal: 4
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkCrateBasicChemBottles
+  # name: chemistry starter kit
+  # description: It's not much but it can make a big difference if you know the right recipes.
+  # productEntity: CrateBasicChemBottles
+  # cost:
+    # Telecrystal: 2
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkBoxEmergencyMedipens
+  # name: emergency medipen box
+  # description: A box of 8 fast epinephrine and tranex shots that will change the course of your life.
+  # productEntity: BoxEmergencyMedipens
+  # cost:
+    # Telecrystal: 4
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: listing
+  # id: UplinkHelpingHandHarness
+  # name: helping hand harness
+  # description: A machine arm with a neural interface that grants its wearer an additional manipulator!
+  # productEntity: HelpingHandHarness
+  # cost:
+    # Telecrystal: 10
+  # categories:
+  # - DungeonUplinkMeds
+
+# - type: storeCategory
+  # id: DungeonUplinkUtil
+  # name: Utility
+  # priority: 10
+
+# - type: listing
+  # id: UplinkPowerCellRecharger
+  # name: power cell recharger
+  # description: Let's shed some light into this!
+  # productEntity: PowerCellRecharger
+  # cost:
+    # Telecrystal: 4
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkWeaponCapacitorRecharger
+  # name: weapon recharger
+  # description: Make that laser go pew pew!
+  # productEntity: WeaponCapacitorRecharger
+  # cost:
+    # Telecrystal: 4
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkToolboxSyndicateFilled
+  # name: toolbox
+  # description: Just for the tools of course.
+  # productEntity: ToolboxSyndicateFilled
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkOreProcessorMachineCircuitboard
+  # name: ore processor machine circuitboard
+  # description: Miss the previous station much?
+  # productEntity: OreProcessorMachineCircuitboard
+  # cost:
+    # Telecrystal: 5
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkAutolatheMachineCircuitboard
+  # name: autolathe machine circuitboard
+  # description: What else could you possibly want?
+  # productEntity: AutolatheMachineCircuitboard
+  # cost:
+    # Telecrystal: 8
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkMicroManipulatorStockPart
+  # name: micromanipulator stock part
+  # description: Semiconductors this far away in the galaxy couldn't be cheap.
+  # productEntity: MicroManipulatorStockPart
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkMatterBinStockPart
+  # name: matter bin stock part
+  # description: You have to sign and fax us a document assuring us you won't build an atomic bomb.
+  # productEntity: MatterBinStockPart
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkCapacitorStockPart
+  # name: capacitor stock part
+  # description: Charge a small one up and hand it to your partner. Shocking!
+  # productEntity: CapacitorStockPart
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkMicroLaserStockPart
+  # name: micro laser stock part
+  # description: Leverages optical crystals which tend to have relatively high nonlinearities and are suitable for periodic polling.
+  # productEntity: MicroLaserStockPart
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkHopper
+  # name: hopper
+  # description: Dispenses your ore in a very orderly fashion.
+  # productEntity: Hopper
+  # cost:
+    # Telecrystal: 3
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkConveyorBeltAssembly
+  # name: conveyor belt
+  # description: What the heck are you doing down there son? This is a dungeon crawler.
+  # productEntity: ConveyorBeltAssembly
+  # cost:
+    # Telecrystal: 2
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkHydroponicsToolClippers
+  # name: clippers
+  # description: The art of pruning and stem cutting requires patience.
+  # productEntity: HydroponicsToolClippers
+  # cost:
+    # Telecrystal: 5
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkFloodlight
+  # name: floodlight
+  # description: Trust me. This is cheap. The caves are dark. You want it.
+  # productEntity: Floodlight
+  # cost:
+    # Telecrystal: 4
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkWallmountGeneratorAPUElectronics
+  # name: wallmount generator APU electronics
+  # description: Probably a tiny thermonuclear generator, but who knows what's inside. Rated 3kW.
+  # productEntity: WallmountGeneratorAPUElectronics
+  # cost:
+    # Telecrystal: 5
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkWallmountSubstationElectronics
+  # name: wallmount substation electronics
+  # description: Big copper coil transformers and fat impedance-matching capacitors for transferring Hv power to Mv.
+  # productEntity: WallmountSubstationElectronics
+  # cost:
+    # Telecrystal: 4
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkAPCElectronics
+  # name: apc electronics
+  # description: Now you can turn this switch on and light up all those machines, finally. But at wat cost?
+  # productEntity: APCElectronics
+  # cost:
+    # Telecrystal: 4
+  # categories:
+  # - DungeonUplinkUtil
+
+# - type: listing
+  # id: UplinkClothingNeckBodycam
+  # name: bodycam
+  # description: Wonder why it's so cheap? It's imported from space china.
+  # productEntity: ClothingNeckBodycam
+  # cost:
+    # Telecrystal: 1
+  # categories:
+  # - DungeonUplinkUtil

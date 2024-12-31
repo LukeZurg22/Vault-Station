@@ -11,7 +11,7 @@
     storedOffset: 0,0
   - type: Currency
     price:
-      Coin: 1
+      CoinPiece: 1
   - type: Material
   - type: PhysicalComposition
     materialComposition:
