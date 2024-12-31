@@ -1,4 +1,4 @@
-# Absolutely-Necessary-Abstract-ProtoType(TM) [DO 
+# Absolutely-Necessary-Abstract-ProtoType(TM)
 - type: entity
   id: BaseLadder
   abstract: true
@@ -18,7 +18,6 @@
     tags:
       - Structure
   - type: InteractionOutline
-  - type: WarpPoint     # For Ghosts to Teleport To The Ladder
 
 - type: entity
   parent: BaseLadder
@@ -49,16 +48,18 @@
       - state: warningtape_up
         shader: unshaded
   - type: Warper        # For Teleporting Between Layers
-    goesUp: true     # Required as a toggle.
+    goesUp: true        # Required as a toggle.
+  - type: WarpPoint     # For Ghosts to Teleport To The Ladder
 
 - type: entity
-  id: LadderDungeon     # This is the topmost Base-Camp entryway.
+  id: LadderDungeon     # This is the topmost Base-Camp entryway. This is FOR BASE-CAMP ONLY. The default values -will- break the system otherwise.
   description: Who knows what the depths of the Vault has in store today?
   parent: LadderTop
   suffix: dungeon
   components:
-  - type: Warper        # For Teleporting Between Layers
-    dungeon: true       # So default generates a fresh dungeon below.
-  - type: WarpPoint
-    id: dlvl0down
+  - type: Warper            # For Teleporting Between Layers
+    id: dlvl0down           # Default base camp Dungeon entrance ID.
+    destinationId: dlvl1up  # Destination is the next (procedural/static) generated floor.
+    dungeon: true           # So default generates a fresh dungeon below.
+  - type: WarpPoint         # For the ghosts.
     location: Vault Entrance

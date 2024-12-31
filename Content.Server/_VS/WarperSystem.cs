@@ -1,20 +1,16 @@
 using System.Linq;
 using System.Numerics;
-using Content.Server._VS;
 using Content.Server.Administration;
 using Content.Server.Bible.Components;
 using Content.Server.Chat.Systems;
 using Content.Server.Popups;
-using Content.Shared._VS;
 using Content.Shared.Administration;
 using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
-using Content.Shared.Gravity;
 using Content.Shared.Interaction;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.NPC.Components;
 using Content.Shared.Tag;
-using Robust.Server.GameObjects;
 using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
@@ -22,7 +18,7 @@ using Robust.Shared.Physics.Systems;
 
 #pragma warning disable CS0618 // Type or member is obsolete
 
-namespace Content.Server.Warps;
+namespace Content.Server._VS;
 
 /// <summary>
 /// This is lifted from Mining Station 14 and redesigned to be used for Vault Station's Dungeon Layers.
@@ -60,6 +56,7 @@ public sealed class WarperSystem : EntitySystem
     }
 
     # region Events
+
     private void OnCleanup(RoundRestartCleanupEvent ev)
     {
         DungeonLevel = 0;
@@ -75,6 +72,7 @@ public sealed class WarperSystem : EntitySystem
         var sender = Loc.GetString("admin-announce-announcer-default");
         _chatSystem.DispatchStationAnnouncement(uid, announcement, sender);
     }
+
     #endregion
 
     /// <summary>
@@ -90,40 +88,25 @@ public sealed class WarperSystem : EntitySystem
         return foundComponent?.Owner;
     }
 
+    /// <summary>
+    /// Generates a dungeon from a Ladder / Entrance point.
+    /// </summary>
+    /// <param name="currentMapEntityUid">The Uid of the map the entrance is located within.</param>
+    /// <param name="originalWarperComponent">The original component that was activated for teleporting.</param>
+    /// <returns></returns>
     private bool GenerateDungeon(EntityUid currentMapEntityUid, WarperComponent originalWarperComponent)
     {
         // Destination is next level
         int lvl = DungeonLevel + 1;
-        var (mapId, path) = _dungeonSelector.GetDungeon(lvl, currentMapEntityUid, originalWarperComponent);
-
-        // If the dungeon doesn't load, then
-        if (!_dungeonSelector.LoadDungeon(lvl, path, mapId))
+        if (!_dungeonSelector.HandleGenerateDungeon(lvl, currentMapEntityUid, originalWarperComponent))
         {
-            Logger.ErrorS("LoadDungeon", $"Could not load path {path} @ dungeon level {lvl} in mapID {mapId}.");
+            DungeonLevel--;
             return false;
         }
         DungeonLevel = lvl;
-        _dungeonSelector.AssignEntrances(lvl, currentMapEntityUid, mapId, originalWarperComponent);
 
-        // Find Ladder Up
-
-        // Find Ladder Down
-
-        /*if (string.IsNullOrEmpty(path))
-        {
-            Logger.ErrorS("warper", $"Could not load map {path} for dungeon level {lvl}. Path returned empty.");
-            return false;
-        }
-
-
+        /*
         // Map generator relies on the global dungeonLevel, so temporarily set it here
-        DungeonLevel = lvl;
-        if (!_map.TryLoad(mapId, path, out var maps))
-        {
-            Logger.ErrorS("warper", $"Could not load map {path} for dungeon level {lvl}");
-            DungeonLevel = lvl - 1;
-            return false;
-        }
 
         // Prepare map
         var map = maps.First();
@@ -193,6 +176,7 @@ public sealed class WarperSystem : EntitySystem
                 return warper;
             }
         }
+
         return null;
     }
 

@@ -31,7 +31,7 @@ public interface IGridSpawnGroup
     /// </summary>
     public float MaximumDistance { get;  }
 
-    /// <inheritdoc />
+    /// <inheritdoc cref="NameDataset"/>
     public ProtoId<LocalizedDatasetPrototype>? NameDataset { get; }
 
     /// <inheritdoc />
