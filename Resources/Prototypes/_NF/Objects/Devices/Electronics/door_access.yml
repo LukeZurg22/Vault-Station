@@ -1,0 +1,15 @@
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsEnvoy
+  suffix: Envoy, Locked
+  components:
+  - type: AccessReader
+    access: [["Envoy"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsMercenary
+  suffix: Mercenary, Locked
+  components:
+  - type: AccessReader
+    access: [["Mercenary"], ["Captain"]]
