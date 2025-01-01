@@ -1,0 +1,31 @@
+# TODO remove these with parameterized prototypes/whatever we end up doing
+# Windoors (alphabetical)
+
+- type: entity
+  parent: BaseSecureWindoor
+  name: secure windoor
+  id: WindoorSecureMercenaryLocked
+  suffix: Mercenary, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMercenary ]
+
+- type: entity
+  parent: BaseSecureWindoor
+  name: secure windoor
+  id: WindoorSecureEnvoyLocked
+  suffix: Envoy, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsEnvoy ]
+
+#- type: entity
+#  parent: BaseSecureWindoor
+#  id: WindoorSecureHeadOfSecurityLocked
+#  suffix: Sheriff, Locked
+#  components:
+#  - type: ContainerFill
+#    containers:
+#      board: [ DoorElectronicsHeadOfSecurity ]

@@ -8,8 +8,32 @@
 
 - type: entity
   parent: DoorElectronics
+  id: DoorElectronicsRogue
+  suffix: Rogue, Locked
+  components:
+  - type: AccessReader
+    access: [["Mercenary"], ["Envoy"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsRogueService
+  suffix: Rogue, Locked
+  components:
+  - type: AccessReader
+    access: [["Envoy"], ["Service"]]
+
+- type: entity
+  parent: DoorElectronics
   id: DoorElectronicsMercenary
   suffix: Mercenary, Locked
   components:
   - type: AccessReader
     access: [["Mercenary"], ["Captain"]]
+
+- type: entity
+  parent: DoorElectronics
+  id: DoorElectronicsRogueCommand
+  suffix: Rogue, Locked
+  components:
+  - type: AccessReader
+    access: [["Seer"], ["Envoy"]]

@@ -1,0 +1,93 @@
+# Airlocks
+- type: entity
+  parent: AirlockCommandLocked
+  id: AirlockRogueLocked
+  suffix: Rogue, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRogue ]
+
+- type: entity
+  parent: AirlockServiceLocked
+  id: AirlockSeviceRogueLocked
+  suffix: Rogue, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRogueService ]
+
+- type: entity
+  parent: AirlockCommandLocked
+  id: AirlockRogueCommandLocked
+  suffix: Rogue Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRogueCommand ]
+
+- type: entity
+  parent: [ AirlockEngineering, AirlockRogueCommandLocked]
+  id: AirlockRogueCommandEngineeringLocked
+  suffix: Rogue Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRogueCommand ]
+
+- type: entity
+  parent: HighSecDoor
+  id: HighSecRogueCommandLocked
+  suffix: Rogue Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRogueCommand ]
+
+- type: entity
+  parent: AirlockMercenary
+  id: AirlockMercenaryLocked
+  suffix: Mercenary, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMercenary ]
+
+# NFSD used to be here.
+
+# Glass Airlocks
+- type: entity
+  parent: AirlockCommandGlassLocked
+  id: AirlockRogueGlassLocked
+  suffix: Rogue, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRogue ]
+
+- type: entity
+  parent: AirlockCommandGlassLocked
+  id: AirlockRogueCommandGlassLocked
+  suffix: Rogue Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRogueCommand ]
+
+- type: entity
+  parent: [ AirlockEngineeringGlass, AirlockRogueCommandGlassLocked]
+  id: AirlockRogueCommandEngineeringGlassLocked
+  suffix: Rogue Command, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsRogueCommand ]
+
+- type: entity
+  parent: AirlockMercenaryGlass
+  id: AirlockMercenaryGlassLocked
+  suffix: Mercenary, Locked
+  components:
+  - type: ContainerFill
+    containers:
+      board: [ DoorElectronicsMercenary ]
