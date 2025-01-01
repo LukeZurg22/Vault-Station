@@ -5,7 +5,7 @@
   description: It opens, it closes, and maybe blocks your way.
   components:
   - type: Sprite
-    sprite: Structures/Doors/Dungeon/dungeonbrick.rsi
+    sprite: _VS/Structures/Doors/dungeonbrick.rsi
     layers:
     - state: closed
       map: ["enum.DoorVisualLayers.Base"]
@@ -21,6 +21,4 @@
       path: /Audio/Effects/door_open.ogg
     closeSound:
       path: /Audio/Effects/door_close.ogg
-  - type: Construction
-    graph: DoorGraph
-    node: dungeonBrickDoor
+
