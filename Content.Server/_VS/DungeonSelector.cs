@@ -15,6 +15,7 @@ using Robust.Shared.Console;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
+
 #pragma warning disable CS0162 // Unreachable code detected
 
 #pragma warning disable CS8509 // The switch expression does not handle all possible values of its input type (it is not exhaustive).
@@ -43,7 +44,7 @@ public sealed class DungeonSelector : EntitySystem
     /// <summary>
     /// It's duly important to know that Map ID's and Levels start at 1.
     /// </summary>
-    private const int DifferenceBetweenStaticDungeons = 5;
+    private const int DifferenceBetweenStaticDungeons = 1;
 
     /// <summary>
     /// The number of hand-made dungeons available in the CCVariables and manually made addition here.
@@ -74,7 +75,7 @@ public sealed class DungeonSelector : EntitySystem
             // If Level is on one of the limited number of hand-made levels.
             if (level / DifferenceBetweenStaticDungeons <= NumberOfStaticDungeons)
             {
-                (_, mapId) = (level / DifferenceBetweenStaticDungeons) switch
+                (_, mapId) = (level / DifferenceBetweenStaticDungeons) switch // [WIP] might not work right.
                 {
                     // Special handling for specific levels
                     1 => // DUNGEON #1 :: Subsurface Dungeon
@@ -145,7 +146,8 @@ public sealed class DungeonSelector : EntitySystem
 
         if (!GenerateProceduralDungeon(dungeonPreset: selectedPreset, level))
         {
-            _sawmill.Error($"GenerateProceduralDungeon({selectedPreset},{level}) :: Failed to generate procedural dungeon.");
+            _sawmill.Error(
+                $"GenerateProceduralDungeon({selectedPreset},{level}) :: Failed to generate procedural dungeon.");
         }
     }
 
@@ -174,14 +176,16 @@ public sealed class DungeonSelector : EntitySystem
 
         if (!_map.TryLoad(mapId, path, out var maps))
         {
-            _sawmill.Error($"CreateDungeonFromStaticCVar({cVariableDefinition}) :: Could not load map {path} for dungeon level {tempDungeonLevel}.");
+            _sawmill.Error(
+                $"CreateDungeonFromStaticCVar({cVariableDefinition}) :: Could not load map {path} for dungeon level {tempDungeonLevel}.");
             return (false, null);
         }
 
         var map = maps[0];
         if (!ApplyDungeonComponents(map, metadata))
         {
-            _sawmill.Error($"ApplyDungeonComponents({map},{metadata}) :: Failed to apply dungeon components for level {tempDungeonLevel}.");
+            _sawmill.Error(
+                $"ApplyDungeonComponents({map},{metadata}) :: Failed to apply dungeon components for level {tempDungeonLevel}.");
             return (false, null);
         }
 
@@ -204,13 +208,15 @@ public sealed class DungeonSelector : EntitySystem
         gravity.Enabled = true;
         _entityManager.Dirty(map, gravity, metadata);
 
-        // Atmospherics         // [WARN] Not working correctly!!
+        // Atmospherics
         var atmos = _entityManager.EnsureComponent<MapAtmosphereComponent>(map);
         var moles = new float[Atmospherics.AdjustedNumberOfGases];
         var gasMixture = new GasMixture(moles, 293.15f);
+        gasMixture.AdjustMoles(Gas.Oxygen, 21);
+        gasMixture.AdjustMoles(Gas.Nitrogen, 79);
         _entityManager.System<AtmosphereSystem>().SetMapAtmosphere(map, false, gasMixture);
         _entityManager.System<AtmosphereSystem>()
-            .SetMapGasMixture(map, new GasMixture(moles, 293.15f), atmos); // Temperature is tolerable by default.
+            .SetMapGasMixture(map, new GasMixture(moles.ToArray(), 293.15f), atmos); // Temperature is tolerable by default.
 
         // Ambient Lighting Color
         const float paceOfChange = 0.001f; // How fast the dungeon gets dark.
@@ -246,22 +252,15 @@ public sealed class DungeonSelector : EntitySystem
         var (mapUid, mapId, metadata) =
             CreateMapProto($"Dungeon Layer {tempDungeonLevel}");
 
-        /*
-         // Force all templates to be setup.
-        foreach (var room in _prototypeManager.EnumeratePrototypes<DungeonRoomPrototype>())
-        {
-            _dungeonSystem.GetOrCreateTemplate(room);
-        }
-        */
-
         // [NOTE] This was the best way I could handle it at the moment.
         // Despite all of my searching, this was the first and only thing to come u pthat seems like it would work.
-        var completionResult =CompletionResult.FromHintOptions(
-            CompletionHelper.PrototypeIDs<DungeonConfigPrototype>(proto: _prototypeManager), "");
+        var completionResult = CompletionResult.FromHintOptions(
+            CompletionHelper.PrototypeIDs<DungeonConfigPrototype>(proto: _prototypeManager),
+            "");
         var dungeonPrototype = completionResult.Options.FirstOrDefault(o => o.Value == dungeonPreset).Value;
         if (string.IsNullOrEmpty(dungeonPrototype))
         {
-         _sawmill.Error($"GenerateProceduralDungeon dungeon preset {dungeonPreset} is invalid.");
+            _sawmill.Error($"GenerateProceduralDungeon dungeon preset {dungeonPreset} is invalid.");
             return false;
         }
 
@@ -371,36 +370,6 @@ originalWarperComponent.DestinationId = $"dlvl{dungeonLevel}up";
         warperDown.DestinationId = $"dlvl{dungeonLevel + 1}up";
         warperDown.GeneratesDungeon = true; // Enabled so that static dungeons will generate dungeon layers below them.
 
-        return true;
-    }
-
-    /// <summary>
-    /// Initializes the dungeon layer.
-    /// </summary>
-    /// <param name="dungeonLevel"></param>
-    /// <param name="path"></param>
-    /// <param name="mapId"></param>
-    /// <returns></returns>
-    public bool LoadDungeon(int dungeonLevel, string path, MapId mapId)
-    {
-        if (string.IsNullOrEmpty(path))
-        {
-            _sawmill.Error($"warper :: Could not load map {path} for dungeon level {dungeonLevel}. Path returned empty.");
-            return false;
-        }
-
-        // Map generator relies on the global dungeonLevel, so temporarily set it here
-        if (!_map.TryLoad(mapId, path, out var maps))
-        {
-            _sawmill.Error($"warper :: Could not load map {path} for dungeon level {dungeonLevel}.");
-            return false;
-        }
-
-        // Prepare map
-        var map = maps[0];
-        var gravity = _entityManager.EnsureComponent<GravityComponent>(map);
-        gravity.Enabled = true;
-        _entityManager.DirtyEntity(gravity.Owner);
         return true;
     }
 
