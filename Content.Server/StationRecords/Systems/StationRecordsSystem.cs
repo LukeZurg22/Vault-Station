@@ -1,6 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Server.Access.Systems;
-using Content.Server.Forensics;
+using Content.Server.Forensics.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Forensics.Components;
 using Content.Shared.GameTicking;
@@ -11,8 +11,6 @@ using Content.Shared.Roles;
 using Content.Shared.StationRecords;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using DnaComponent = Content.Server.Forensics.Components.DnaComponent;
-using FingerprintComponent = Content.Server.Forensics.Components.FingerprintComponent;
 
 namespace Content.Server.StationRecords.Systems;
 

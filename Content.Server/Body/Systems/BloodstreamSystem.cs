@@ -1,7 +1,6 @@
 using Content.Server.Body.Components;
 using Content.Server.EntityEffects.Effects;
 using Content.Server.Fluids.EntitySystems;
-using Content.Server.Forensics;
 using Content.Server.Forensics.Systems;
 using Content.Server.Popups;
 using Content.Shared.Alert;
@@ -24,7 +23,6 @@ using Robust.Server.Audio;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using DnaComponent = Content.Server.Forensics.Components.DnaComponent;
 
 namespace Content.Server.Body.Systems;
 
@@ -217,7 +215,7 @@ public sealed class BloodstreamSystem : EntitySystem
         }
 
         // TODO probably cache this or something. humans get hurt a lot
-        if (!_prototypeManager.TryIndex<DamageModifierSetPrototype>(ent.Comp.DamageBleedModifiers, out var modifiers))
+        if (!_prototypeManager.TryIndex(ent.Comp.DamageBleedModifiers, out var modifiers))
             return;
 
         var bloodloss = DamageSpecifier.ApplyModifierSet(args.DamageDelta, modifiers);

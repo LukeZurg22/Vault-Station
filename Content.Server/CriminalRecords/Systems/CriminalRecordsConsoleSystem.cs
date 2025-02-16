@@ -14,6 +14,7 @@ using System.Diagnostics.CodeAnalysis;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Security.Components;
 using System.Linq;
+using Content.Server.StationRecords.Components;
 using Content.Shared.Roles.Jobs;
 
 namespace Content.Server.CriminalRecords.Systems;
@@ -137,9 +138,9 @@ public sealed class CriminalRecordsConsoleSystem : SharedCriminalRecordsConsoleS
 
         (string, object)[] args;
         if (reason != null)
-            args = new (string, object)[] { ("name", name), ("officer", officer), ("reason", reason), ("job", jobName) };
+            args = [("name", name), ("officer", officer), ("reason", reason), ("job", jobName)];
         else
-            args = new (string, object)[] { ("name", name), ("officer", officer), ("job", jobName) };
+            args = [("name", name), ("officer", officer), ("job", jobName)];
 
         // figure out which radio message to send depending on transition
         var statusString = (oldStatus, msg.Status) switch

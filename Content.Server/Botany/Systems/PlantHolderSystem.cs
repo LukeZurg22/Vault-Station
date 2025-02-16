@@ -1,6 +1,7 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Botany.Components;
 using Content.Server.Kitchen.Components;
+using Content.Server.Labels.Label.Components;
 using Content.Server.Popups;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Atmos;
@@ -22,7 +23,6 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
-using Content.Server.Labels.Components;
 using Content.Shared.Containers.ItemSlots;
 
 namespace Content.Server.Botany.Systems;
@@ -169,14 +169,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 component.Seed = seed;
                 component.Dead = false;
                 component.Age = 1;
-                if (seeds.HealthOverride != null)
-                {
-                    component.Health = seeds.HealthOverride.Value;
-                }
-                else
-                {
-                    component.Health = component.Seed.Endurance;
-                }
+                component.Health = seeds.HealthOverride ?? component.Seed.Endurance;
                 component.LastCycle = _gameTiming.CurTime;
 
                 if (TryComp<PaperLabelComponent>(args.Used, out var paperLabel))
