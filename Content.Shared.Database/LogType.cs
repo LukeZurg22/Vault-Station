@@ -440,6 +440,13 @@ public enum LogType
     /// </summary>
     GhostWarp = 95,
 
-    // Frontier
-    ATMUsage = 200,
+    /// <summary>
+    /// A player interacted with a PDA or its cartridge component
+    /// </summary>
+    PdaInteract = 96,
+
+    /// <summary>
+    /// An atmos networked device (such as a vent or pump) has had its settings changed, usually through an air alarm
+    /// </summary>
+    AtmosDeviceSetting = 97,
 }

@@ -6,6 +6,7 @@ using Content.Server.Store.Components;
 using Content.Server.Store.Systems;
 using Content.Shared.Cuffs.Components;
 using Content.Shared.Forensics;
+using Content.Shared.Forensics.Components;
 using Content.Shared.Humanoid;
 using Content.Shared.Implants;
 using Content.Shared.Implants.Components;
@@ -23,6 +24,8 @@ using Content.Server.Forensics.Systems;
 using Content.Server.Humanoid.Systems;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
+using Content.Server.IdentityManagement;
+using Content.Server.DetailExaminable;
 using Content.Shared.Store.Components;
 using Robust.Shared.Collections;
 using Robust.Shared.Map.Components;
@@ -45,6 +48,7 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
     [Dependency] private readonly PullingSystem _pullingSystem = default!;
     [Dependency] private readonly EntityLookupSystem _lookupSystem = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
 
     private EntityQuery<PhysicsComponent> _physicsQuery;
     private HashSet<Entity<MapGridComponent>> _targetGrids = [];
@@ -215,7 +219,7 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
         {
             var newProfile = HumanoidCharacterProfile.RandomWithSpecies(humanoid.Species);
             _humanoidAppearance.LoadProfile(ent, newProfile, humanoid);
-            _metaData.SetEntityName(ent, newProfile.Name);
+            _metaData.SetEntityName(ent, newProfile.Name, raiseEvents: false); // raising events would update ID card, station record, etc.
             if (TryComp<DnaComponent>(ent, out var dna))
             {
                 dna.DNA = _forensicsSystem.GenerateDNA();
@@ -227,6 +231,8 @@ public sealed class SubdermalImplantSystem : SharedSubdermalImplantSystem
             {
                 fingerprint.Fingerprint = _forensicsSystem.GenerateFingerprint();
             }
+            RemComp<DetailExaminableComponent>(ent); // remove MRP+ custom description if one exists 
+            _identity.QueueIdentityUpdate(ent); // manually queue identity update since we don't raise the event
             _popup.PopupEntity(Loc.GetString("scramble-implant-activated-popup"), ent, ent);
         }
 
